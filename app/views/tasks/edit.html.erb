@@ -1,0 +1,26 @@
+<h3>Edit Task</h3>
+<%= form_tag "/tasks/#{@task.id}", method: :patch do %>
+  <div>
+  <p>Task:</p>
+    <input type="text" name="task_name" value="<%= @task.name %>">
+  </div>
+  <div>
+    <p>Length time:</p>
+    <input type="text" name="length_time" value="<%= @task.length_time %>">
+  </div>
+  <div>
+    <p>Category:</p>
+    <input type="text" name="category" value="<%= @task.category_id %>">
+  </div>
+  <div>
+    <p>Notes:</p>
+    <textarea name="notes" cols="25" rows="5">
+      <%= @task.notes %>
+    </textarea>
+  </div>
+  
+  <input type="submit" value="submit">
+<% end %>
+<%= form_tag "/tasks/#{@task.id}", method: :delete do%>
+  <input type="submit" value="Delete task">
+<% end %>

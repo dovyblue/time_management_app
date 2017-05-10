@@ -1,17 +1,369 @@
 <!DOCTYPE html>
-<html>
+<!-- <html> -->
+<html dir="ltr" lang="en">
   <head>
     <title>TimeManagementApp</title>
+    
+    <meta charset="utf-8">
+    
+    <meta name="description" content="The Project a Bootstrap-based, Responsive HTML5 Template">
+    <meta name="author" content="htmlcoder.me">
+
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <!-- Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Font Awesome CSS -->
+    <link href="/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Fontello CSS -->
+    <link href="/fonts/fontello/css/fontello.css" rel="stylesheet">
+
+    <!-- Plugins -->
+    <link href="/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/css/animations.css" rel="stylesheet">
+    <link href="/plugins/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/plugins/owlcarousel2/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="/plugins/hover/hover-min.css" rel="stylesheet">    
+    
+    <!-- The Project's core CSS file -->
+    <!-- Use css/rtl_style.css for RTL version -->
+    <link href="/css/style.css" rel="stylesheet" >
+    <!-- The Project's Typography CSS file, includes used fonts -->
+    <!-- Used font for body: Roboto -->
+    <!-- Used font for headings: Raleway -->
+    <!-- Use css/rtl_typography-default.css for RTL version -->
+    <link href="/css/typography-default.css" rel="stylesheet" >
+    <!-- Color Scheme (In order to change the color scheme, replace the blue.css with the color scheme that you prefer)-->
+    <link href="/css/skins/light_blue.css" rel="stylesheet">
+    
+
+    <!-- Custom css --> 
+    <link href="/css/custom.css" rel="stylesheet">
+  
+
+    
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
 
   <body>
-  <% flash.each do |name, massage| %>
-    <h4><%= massage %></h4>
-  <% end %>
+    <div class="page-wrapper">
+      <% if controller_name == "tasks" && action_name == "index" %>
+        <div class="header-container">
+          <header class="header  fixed   dark clearfix">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3 ">
+                  <!-- header-first start -->
+                  <!-- ================ -->
+                  <div class="header-first clearfix">
+     
+                    <!-- logo -->
+                    <div id="logo" class="logo">
+                      <a href="/todays-tasks"><img id="logo_img" src="/images/logo_light_blue.png" alt="The Project"></a>
+                    </div>
+
+                    <!-- name-and-slogan -->
+                    <div class="site-slogan">
+                      Multipurpose HTML5 Template
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="header-dropdown-buttons hidden-xs ">
+                    <div class="btn-group dropdown">
+                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                        <li>
+                          <form role="search" class="search-box margin-clear">
+                            <div class="form-group has-feedback">
+                              <input type="text" class="form-control" placeholder="Search">
+                              <i class="icon-search form-control-feedback"></i>
+                            </div>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <nav class="navbar navbar-default" role="navigation">
+                    <ul class="nav navbar-nav ">
+                      <li>
+                        <a href="/days">Calendar</a>                
+                      </li>
+                    </ul>
+                  </nav>
+                </div> 
+                <div class="col-md-2">
+                  
+                  <!-- header-second start -->
+                  <!-- ================ -->
+                  <div class="header-second clearfix">
+                    
+                  <!-- main-navigation start -->
+                  <!-- classes: -->
+                  <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
+                  <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
+                  <!-- "with-dropdown-buttons": Mandatory class that adds extra space, to the main navigation, for the search and cart dropdowns -->
+                  <!-- ================ -->
+                  <div class="main-navigation  animated with-dropdown-buttons">
+                    <!-- navbar start -->
+                    <!-- ================ -->
+                    <nav class="navbar navbar-default" role="navigation">
+                      <div class="container-fluid">
+                        <!-- Toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                          <!-- main-menu -->
+                          <ul class="nav navbar-nav ">
+                            <li class="dropdown ">
+                              <a href="portfolio-grid-2-3-col.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+                              <ul class="dropdown-menu">
+                                <li ><a href="/tasks">Tasks</a></li>
+                                <li ><a href="portfolio-item-3.html">Preferences</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </nav>
+                    <!-- navbar end -->
+                  </div>
+                  <!-- main-navigation end -->
+                 </div>
+                  <!-- header-second end -->
+                </div>
+                <div class="col-md-2">
+                  <nav class="navbar navbar-default" role="navigation">
+                    <ul class="nav navbar-nav ">
+                      <li>
+                        <a href="/days">Calendar</a>                
+                      </li>
+                    </ul>
+                  </nav>
+                </div> 
+                <div class="col-md-1">
+                  <nav class="navbar navbar-default" role="navigation">
+                    <ul class="nav navbar-nav ">
+                      <li>
+                        <a href="/logout">Logout</a>    
+                      </li>
+                    </ul>
+                  </nav>
+                </div> 
+              </div>
+            </div>
+          </header>
+        </div>
+      <% else %>
+        <div class="header-container">
+          <header class="header  fixed   dark clearfix">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7 ">
+                  <!-- header-first start -->
+                  <!-- ================ -->
+                  <div class="header-first clearfix">
+                    <!-- logo -->
+                    <div id="logo" class="logo">
+                      <a href="/todays-tasks"><img id="logo_img" src="/images/logo_light_blue.png" alt="The Project"></a>
+                    </div>
+                    <!-- name-and-slogan -->
+                    <div class="site-slogan">
+                      Multipurpose HTML5 Template
+                    </div>
+                  </div>
+                  <!-- header-first end -->
+                </div>
+                <% if current_user %>
+                  <div class="col-md-2">
+                    <!-- header-second start -->
+                    <!-- ================ -->
+                    <div class="header-second clearfix">
+                      
+                    <!-- main-navigation start -->
+                    <!-- classes: -->
+                    <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
+                    <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
+                    <!-- "with-dropdown-buttons": Mandatory class that adds extra space, to the main navigation, for the search and cart dropdowns -->
+                    <!-- ================ -->
+                    <div class="main-navigation  animated with-dropdown-buttons">
+
+                      <!-- navbar start -->
+                      <!-- ================ -->
+                      <nav class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                          <!-- Toggle get grouped for better mobile display -->
+                          <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                            </button>  
+                          </div>
+                          <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                            <!-- main-menu -->
+                            <ul class="nav navbar-nav ">
+                              <li class="dropdown ">
+                                <a href="portfolio-grid-2-3-col.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+                                <ul class="dropdown-menu">
+                                  <li ><a href="/tasks">Tasks</a></li>
+                                  <li ><a href="portfolio-item-3.html">Preferences</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </nav>
+                      <!-- navbar end -->
+                    </div>
+                    <!-- main-navigation end -->
+                   </div>
+                    <!-- header-second end -->
+                  </div>
+                  <div class="col-md-2">
+                    <nav class="navbar navbar-default" role="navigation">
+                      <ul class="nav navbar-nav ">
+                        <li>
+                          <a href="/days">Calendar</a>                
+                        </li>
+                      </ul>
+                    </nav>
+                  </div> 
+                  <div class="col-md-1">
+                    <nav class="navbar navbar-default" role="navigation">
+                      <ul class="nav navbar-nav ">
+                        <li>
+                          <a href="/logout">Logout</a>    
+                        </li>
+                      </ul>
+                    </nav>
+                  </div> 
+                <% else %>
+                 <div class="col-md-2"></div>
+                 <div class="col-md-2">
+                   <nav class="navbar navbar-default" role="navigation">
+                      <ul class="nav navbar-nav ">
+                        <li>
+                          <a href="/about">About</a>    
+                        </li>
+                      </ul>
+                    </nav>
+                 </div>
+                 <div class="col-md-1">
+                    <nav class="navbar navbar-default" role="navigation">
+                      <ul class="nav navbar-nav ">
+                        <li>
+                          <a href="/login">Login</a>    
+                        </li>
+                      </ul>
+                    </nav>
+                  </div> 
+                <% end %>
+              </div>
+            </div>
+          </header>
+        </div>
+      <% end %>
+    <% flash.each do |name, massage| %>
+      <h4><%= massage %></h4>
+    <% end %>
+  
     <%= yield %>
+
+      <footer id="footer" class="clearfix dark">
+
+        <!-- .footer start -->
+        <!-- ================ -->
+        <div class="footer">
+          <div class="container">
+            <div class="footer-inner">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="footer-content text-center padding-ver-clear">
+                    <div class="logo-footer"><img id="logo-footer" class="center-block" src="/images/logo_light_blue.png" alt=""></div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus illo vel dolorum soluta consectetur doloribus sit. Delectus non tenetur odit dicta vitae debitis suscipit doloribus. Lorem ipsum dolor sit amet, illo vel dolorum soluta consectetur.</p>
+                    <ul class="list-inline mb-20">
+                      <li><i class="text-default fa fa-map-marker pr-5"></i>One infinity loop, 54100</li>
+                      <li><a href="tel:+00 1234567890" class="link-dark"><i class="text-default fa fa-phone pl-10 pr-5"></i>+00 1234567890</a></li>
+                      <li><a href="mailto:info@theproject.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>info@theproject.com</a></li>
+                    </ul>
+                    <ul class="social-links circle animated-effect-1 margin-clear">
+                      <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                      <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                      <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                      <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                      <li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
+                    </ul>
+                    <div class="separator"></div>
+                    <p class="text-center margin-clear">Copyright © 2017 The Project by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>. All Rights Reserved</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .footer end -->
+
+      </footer>
+      <!-- footer end -->
+      
+    </div>
+    <!-- page-wrapper end -->
+
+    <!-- JavaScript files placed at the end of the document so the pages load faster -->
+    <!-- ================================================== -->
+    <!-- Jquery and Bootstap core js files -->
+    <script type="text/javascript" src="/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Modernizr javascript -->
+    <script type="text/javascript" src="/plugins/modernizr.js"></script>
+    <!-- Magnific Popup javascript -->
+    <script type="text/javascript" src="/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Appear javascript -->
+    <script type="text/javascript" src="/plugins/waypoints/jquery.waypoints.min.js"></script>
+    <!-- Count To javascript -->
+    <script type="text/javascript" src="/plugins/jquery.countTo.js"></script>
+    <!-- Parallax javascript -->
+    <script src="/plugins/jquery.parallax-1.1.3.js"></script>
+    <!-- Contact form -->
+    <script src="/plugins/jquery.validate.js"></script>
+    <!-- Background Video -->
+    <script src="/plugins/vide/jquery.vide.js"></script>
+    <!-- Owl carousel javascript -->
+    <script type="text/javascript" src="/plugins/owlcarousel2/owl.carousel.min.js"></script>
+    <!-- SmoothScroll javascript -->
+    <script type="text/javascript" src="/plugins/jquery.browser.js"></script>
+    <script type="text/javascript" src="/plugins/SmoothScroll.js"></script>
+    <!-- Initialization of Plugins -->
+    <script type="text/javascript" src="/js/template.js"></script>
+    <!-- Custom Scripts -->
+    <script type="text/javascript" src="/js/custom.js"></script>
+    <script type="text/javascript" src="/plugins/rs-plugin-5/js/jquery.themepunch.revolution.min.js"></script>
   </body>
 </html>
+<!-- </html> -->

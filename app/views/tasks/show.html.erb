@@ -1,0 +1,10 @@
+<p><a href="/tasks">All tasks</a></p>
+<p>Task: <%= @task.name %></p>
+<p>Length time: <%= @task.length_time %> min.</p>
+<p>Notes: <%= @task.notes %></p>
+<p>Category: <%= @task.category.name %></p>
+<% if @task.user %>
+  <p>-yours-</p>
+  <p><%= @task.user.name %></p>
+<% end %>
+<a href="/tasks/<%= @task.id %>/edit"><button>Edit</button></a>

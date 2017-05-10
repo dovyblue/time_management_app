@@ -1,11 +1,77 @@
-<% @tasks.each do |task| %>
-  <p>Task: <%= task.name %></p>
-  <p>Length time: <%= task.length_time %> min.</p>
-  <p>Notes: <%= task.notes %></p>
-  <p>Category: <%= task.category.name %></p>
-  <% if task.user %>
-    <p>-yours-</p>
-    <p><%= task.user.name %></p>
-  <% end %>
-  <p>---------------------------</p>
-<% end %>
+
+<section class="pv-30 parallax light-translucent-bg slight background-img-1 padding-bottom-clear">
+      
+    
+  <div class="container">
+   <a href="/tasks/new" class="btn btn-info btn-lg">Add Task</a>
+   <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Add Task</button>
+
+      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="mySmallModalLabel">New Task</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess3">Task Name</label>
+                <input type="text" class="form-control" id="inputSuccess3">
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess3">Task Duration (in minutes)</label>
+                <input type="text" class="form-control" id="inputSuccess3">
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess3">Category</label>
+                <input type="text" class="form-control" id="inputSuccess3">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-sm btn-default">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <% @categories.each do |category| %>
+        <h2 style="text-align: center;"><%= category.name %></h2>
+        <hr>
+        <% c_tasks = category.tasks.where(user_id: current_user.id) %>
+        <% bg_c = true %>
+        <% c_tasks.each_slice(6) do |six_tasks| %>
+          <div class="row">
+            <% six_tasks.each do |task| %>
+              <% if bg_c %>
+                <div class="col-md-2 ">
+                  <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                    <span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
+                    <h4><%= task.name %></h4>
+                    <div class="separator clearfix"></div>
+                    <p><%= task.length_time %> min.</p>
+                    <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
+                  </div>
+                </div>
+                <% bg_c = false %>
+              <% else %>
+                <div class="col-md-2 ">
+                  <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                    <span class="icon dark-bg circle"><i class="fa fa-diamond"></i></span>
+                    <h4><%= task.name %></h4>
+                    <div class="separator clearfix"></div>
+                    <p><%= task.length_time %> min.</p>
+                    <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
+                  </div>
+                </div>
+                <% bg_c = true %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+       
+  </div>
+
+</section>

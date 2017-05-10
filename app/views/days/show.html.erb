@@ -1,0 +1,35 @@
+
+<p><a href="/todays-tasks">main page</a></p>
+<p><a href="/days">calendar</a></p>
+<% str_time = Time.parse(@day.start_time) %>
+<% ed_time = Time.parse(@day.end_time) %>
+<h1><%= @day.date %></h1>
+<p>-----------------</p>
+<p>-----------------</p>
+<h4>id: <%= @day.id %></h4>
+<h2>start time: <%= str_time.strftime("%I:%M:%S %p") %></h2>
+<% if @task_to_dos.length >= 1%>
+  <h4>tasks to do</h4>
+  <% @day.sorted_tasks.each do |task| %>
+    <p><%= task.id %></p>
+    <p><%= task.task.name %></p>
+    <p>start time: <%= task.start_time %></p>
+    <p>end time: <%= task.end_time %></p>
+    <p>length time: <%= task.task.length_time %></p>
+    <p>importance: <%= task.importance %></p>
+    <% if task.start_time == "" %>
+      <p>time: <%= str_time.strftime("%I:%M:%S %p") %></p>
+      <% str_time += (task.task.length_time * 60) %>
+    <% else %>
+      <% str_time = Time.parse(task.start_time) %>
+      <p>time: <%= str_time.strftime("%I:%M:%S %p") %></p>
+      <% str_time += (task.task.length_time * 60) %>
+    <% end %>
+    <p>-----------------</p>
+  <% end %>
+<% else %>
+  <p>there is no tasks for this day</p>
+  <a href="/<%= @day.date %>/task-to-dos/new">add task</a>
+<% end %>
+<h2>end time: <%= ed_time.strftime("%I:%M:%S %p") %></h2>
+<a href="/<%= @day.date %>/task-to-dos/edit"><button>Edit</button></a>

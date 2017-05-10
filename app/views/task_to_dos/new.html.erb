@@ -1,0 +1,55 @@
+<section class="pv-30 parallax light-translucent-bg slight background-img-1 padding-bottom-clear">
+  <div class="container">
+    <% @categories.each do |category| %>
+      <h3 style="text-align: center;"><%= category.name %></h3>
+      <hr>
+      <% c_tasks = category.tasks.where(user_id: current_user.id) %>
+      <% bg_c = true %>
+      <% c_tasks.each_slice(12) do |twelve_tasks| %>
+        <div class="row">
+          <% twelve_tasks.each do |task| %>
+            <% if bg_c %>
+              <div class="col-md-1 ">
+                <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                  <span class="icon small default-bg circle" onclick="addToList(this)"><i class="fa fa-diamond"></i></span>
+                  <h6><%= task.name %></h6>
+                  <!-- <div class="separator clearfix"></div> -->
+                  <p>:<%= task.length_time %></p>
+                  <!-- <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a> -->
+                  <!-- <div class="radio">
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                </div> -->
+                </div>
+              </div>
+              <% bg_c = false %>
+            <% else %>
+              <div onclick="addToList(this)" class="col-md-1 ">
+                <div  class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                  <span class="icon small dark-bg circle" ><i class="fa fa-diamond"></i></span>
+                  <h6><%= task.name %></h6>
+                  <!-- <div class="separator clearfix"></div> -->
+                  <p>:<%= task.length_time %></p>
+                  <!-- <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a> -->
+                </div>
+              </div>
+              <% bg_c = true %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+<hr>
+
+<h3>Tasks</h3>
+<%= form_tag "/task-to-dos", method: :post do %>
+  <% @tasks.each do |task| %>
+    <p><%= check_box_tag "tasks[]", task.id %>
+    <%= h task.name %></p>
+  <% end %>
+  <input type="hidden" name="date" value="<%= @date %>">
+  <input type="submit" value="submit">
+<% end %>
+  
+  
