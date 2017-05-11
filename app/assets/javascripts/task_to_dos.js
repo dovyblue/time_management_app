@@ -9,7 +9,7 @@ function addToList(input) {
   //   input.classList.value = "icon dark-bg circle";
   // }
   if (input.style['color'] === 'red') {
-    input.style['color'] = 'black' ;
+    input.style['color'] = 'white' ;
   } else {
     input.style['color'] = 'red';
   }
