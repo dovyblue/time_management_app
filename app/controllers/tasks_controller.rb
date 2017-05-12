@@ -18,6 +18,7 @@ class TasksController < ApplicationController
       user_id: current_user.id
     )
     task.save
+    task.update(icon: task.category.icon)
     redirect_to "/tasks/#{task.id}"
   end
 

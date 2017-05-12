@@ -231,9 +231,9 @@
 
 
       <% @categories.each do |category| %>
-        <h2 style="text-align: center;"><%= category.name %></h2>
-        <hr>
-        <% c_tasks = category.tasks.where(user_id: current_user.id) %>
+        <h2 class="text-center"><%= category.name %></h2>
+        <div class="separator with-icon"><i class="<%= category.icon %>"></i></div>
+        <% c_tasks = category.tasks.where(user_id: current_user.id).order(:name) %>
         <% bg_c = true %>
         <% c_tasks.each_slice(6) do |six_tasks| %>
           <div class="row">
@@ -241,7 +241,7 @@
               <% if bg_c %>
                 <div class="col-md-2 ">
                   <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
-                    <span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
+                    <span class="icon default-bg circle"><i class="<%= task.icon %>"></i></span>
                     <h4><%= task.name %></h4>
                     <div class="separator clearfix"></div>
                     <p><%= task.length_time %> min.</p>
@@ -252,7 +252,7 @@
               <% else %>
                 <div class="col-md-2 ">
                   <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
-                    <span class="icon dark-bg circle"><i class="fa fa-diamond"></i></span>
+                    <span class="icon dark-bg circle"><i class="<%= task.icon %>"></i></span>
                     <h4><%= task.name %></h4>
                     <div class="separator clearfix"></div>
                     <p><%= task.length_time %> min.</p>
