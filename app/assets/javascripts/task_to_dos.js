@@ -12,5 +12,6 @@ function addToList(input) {
     input.style['color'] = 'white' ;
   } else {
     input.style['color'] = 'red';
+    console.log(input);
   }
 }

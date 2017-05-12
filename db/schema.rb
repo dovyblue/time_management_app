@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430035842) do
+ActiveRecord::Schema.define(version: 20170512041854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20170430035842) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "name"
+    t.string   "icon"
+  end
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.string   "default_start_time"
+    t.string   "default_end_time"
+    t.string   "speed"
+    t.integer  "time_between"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,5 +69,5 @@ ActiveRecord::Schema.define(version: 20170430035842) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
- 
+
 end

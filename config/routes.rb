@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  get '/about' => 'time_management_app#about'
+  
+  get '/' => 'time_management_app#about'
   get '/todays-tasks' => 'time_management_app#todays_tasks'
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-
+  
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
+  
+  get '/user-preferences/new' => 'user_preferences#new'
+  post '/user-preferences' => 'user_preferences#create'
+  get '/user-preferences/:user-id' => 'user_preferences#show'
+  get '/user-preferences/:user-id/edit' => 'user_preferences#edit'
+  patch '/user-preferences/:user-id' => 'user_preferences#update'
+  
   get '/tasks' => 'tasks#index'
   get '/tasks/new' => 'tasks#new'
   post '/tasks' => 'tasks#create'

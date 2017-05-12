@@ -190,130 +190,98 @@
         <!-- header end -->
       </div>
       <!-- header-container end -->
-    
-    
-
-
-
-
-<!-- <div class="well">
-<div class="row">
-  
-    <div class="col-sm-9">
-      Level 1: .col-sm-9
-       <div class="well">
-      <div class="row">
-     
-        <div class="col-xs-8 col-sm-6">
-          Level 2: .col-xs-8 .col-sm-6
-        </div>
-        </div>
         
-        <div class="col-xs-4 col-sm-6">
-          Level 2: .col-xs-4 .col-sm-6
-        </div>
-       
-      </div>
-    </div>
-  </div>
-</div> -->
-<section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          
-          
-            
-            <!-- <div class="col-md-3"> -->
-            <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-            <div class="body">
-            
-              <h3 class="title">Clean Code </h3>
-              <h4>4:30pm</h4>
-              
+      
+
+
+      <section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
+        <div class="container">
+          <%= form_tag "/task-to-dos", method: :patch do %>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                  <div class="body">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <h2>Start day:</h2>
+                      </div>
+                      <div class="col-md-7">
+                        <h2><input type="time" class="form-control" name="day_start_t" value="<%= @day.start_time %>"></h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- </div> -->
-            <!-- <div class="col-md-3">
-              <h4 class="title">Clean Code &amp; Design</h4>
-              <p>Voluptatem ad  consectetur.</p>
-            </div> -->
-            <!-- <div class="col-md-4">
-              <h4 class="title">Clean Code &amp; Design</h4>
-              <p>Voluptatem ad provident reiciendis lorem dolor consectetur.</p>
-            </div> -->
-            <!-- <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a> -->
-          <!-- </div> -->
+            <% @tasks_to_do.each do |task| %>
+              <%= fields_for "tasks[]", task do |ts|%>
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                      <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
+                      <div class="body">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <h3 class="title"><%= task.task.name %></h3>
+                            <h4><%= task.task.length_time %> min.</h4>
+                          </div>
+                          <div class="col-md-2">
+                            <h4>Edit Duration</h4>
+                            <input type="number" class="form-control" placeholder="minutes">
+                          </div>
+                          <div class="col-md-2">
+                            <h4>Impotance</h4>
+                            <%= ts.select :importance, [1, 2, 3], :selected => task.importance, :class => "form-control"%>
+                            <!-- <select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                            </select> -->
+                          </div>
+                          <div class="col-md-3">
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Start By   
+                              </label>
+                              <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>End By 
+                              </label>
+                            </div>
+                            <%= ts.time_field :start_time, :value => task.start_time, :class => "form-control" %>
+                            <!-- <input type="time" class="form-control" placeholder="duration">  -->
+                          </div>
+                          
+                          <div class="col-md-2">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                          </div>
+                        </div>               
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                  <div class="body">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <h2 class="title">End day:</h2>
+                      </div>
+                      <div class="col-md-7">
+                        <h2 class="title"><input type="time" class="form-control" name="day_end_t" value="<%= @day.end_time %>"></h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="date" value="<%= @day.date %>">
+            <button type="submit" class="btn btn-default-transparent btn-xl btn-hvr hvr-shutter-out-vertical">Submit Task List</button>
+          <% end %>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<h2>Add info to your task list</h2>
-<%= form_tag "/task-to-dos", method: :patch do %>
-  <h3>Day start time: <input type="time" name="day_start_t" value="<%= @day.start_time %>"></h3>
-  <p><a href="/<%= @day.date %>/task-to-dos/new">Add tasks</a></p>
-  <% @tasks_to_do.each do |task| %>
-    <%= fields_for "tasks[]", task do |ts|%>
-      <h4><%= task.task.name %></h4>
-      <p>start time: <%= ts.time_field :start_time, :value => task.start_time %></p>
-      <p>end time: <%= ts.time_field :end_time, :value => task.end_time %></p>
-      <p>importance: <%= ts.select :importance, [1, 2, 3], :selected => task.importance %></p>
-      <hr>
-    <% end %>
-  <% end %>
-  <h3>Day end time: <input type="time" name="day_end_t" value="<%= @day.end_time %>"></h3>
-  <input type="hidden" name="date" value="<%= @day.date %>">
-  <input type="submit" value="Submit">
-<% end %>
+      </section>
 
  <!-- footer top start -->
       <footer id="footer" class="clearfix dark">

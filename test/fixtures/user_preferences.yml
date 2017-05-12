@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  default_start_time: MyString
+  default_end_time: MyString
+  speed: MyString
+  time_between: 1
+
+two:
+  default_start_time: MyString
+  default_end_time: MyString
+  speed: MyString
+  time_between: 1

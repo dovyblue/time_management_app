@@ -1,0 +1,11 @@
+<%= form_tag "/user-preferences", method: :post do  %>
+  <p>default start time: <input type="time" name="default_st"></p>
+  <p>default end time: <input type="time" name="default_et"></p>
+  speed: <select name="speed">
+    <option>fast</option>
+    <option>regular</option>
+    <option>slow</option>
+  </select>
+  <p>time between: <input type="number" name="time_between"></p>
+  <input type="submit" value="submit">
+<% end %>
