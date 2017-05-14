@@ -1,7 +1,6 @@
 class DaysController < ApplicationController
   before_action :authenticate_user!
   def index
-    # @days = Day.where(user_id: current_user.id)
     render 'index.html.erb'
   end
 

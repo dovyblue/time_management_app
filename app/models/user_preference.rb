@@ -1,6 +1,9 @@
 class UserPreference < ApplicationRecord
   belongs_to :user
-
+  validates :default_start_time, presence: true
+  validates :default_end_time, presence: true
+  validates :speed, presence: true
+  validates :time_between, presence: true
   def create_tasks
     housework = Category.find_by(name: "Housework")
     personal = Category.find_by(name: "Personal")

@@ -9,12 +9,12 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  
+    
+  get '/user-preferences' => 'user_preferences#index'
   get '/user-preferences/new' => 'user_preferences#new'
   post '/user-preferences' => 'user_preferences#create'
-  get '/user-preferences/:user-id' => 'user_preferences#show'
-  get '/user-preferences/:user-id/edit' => 'user_preferences#edit'
-  patch '/user-preferences/:user-id' => 'user_preferences#update'
+  get '/user-preferences/:user_id/edit' => 'user_preferences#edit'
+  patch '/user-preferences/:user_id' => 'user_preferences#update'
   
   get '/tasks' => 'tasks#index'
   get '/tasks/new' => 'tasks#new'
@@ -33,4 +33,10 @@ Rails.application.routes.draw do
   get '/:date/task-to-dos/edit' => 'task_to_dos#edit'
   patch '/task-to-dos' => 'task_to_dos#update'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    namespace :v1 do
+      get '/tasks' => 'tasks#index'
+    end
+  end
 end

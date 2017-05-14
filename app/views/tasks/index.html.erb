@@ -139,7 +139,7 @@
                             <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
                             <ul class="dropdown-menu">
                               <li ><a href="/tasks">Tasks</a></li>
-                              <li ><a href="index-shop-2.html">Preferences</a></li>
+                              <li ><a href="/user-preferences">Preferences</a></li>
                             </ul>
                           </li>
                           <li>
@@ -193,12 +193,19 @@
     
     
     
+      <div id="app">
+        <div v-for="category in categories">
+          <p>{{ category.name}}</p>
+        </div>
+        
+      </div>
+
       <section class="pv-30 parallax light-translucent-bg slight background-img-1 padding-bottom-clear">
       
     
   <div class="container">
-   <a href="/tasks/new" class="btn btn-info btn-lg">Add Task</a>
-   <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Add Task</button>
+    <a href="/tasks/new" class="btn btn-info btn-lg">Add Task</a>
+    <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Add Task</button>
 
       <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">

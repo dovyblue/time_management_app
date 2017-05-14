@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if gt IE 9]> <html lang="en" class="ie"> <![endif]-->
@@ -7,7 +8,7 @@
 
   <head>
     <meta charset="utf-8">
-    <!-- <title>The Project | Page Sign Up</title> -->
+    <title>The Project | Page Sign Up</title>
     <meta name="description" content="The Project a Bootstrap-based, Responsive HTML5 Template">
     <meta name="author" content="htmlcoder.me">
 
@@ -59,22 +60,23 @@
     <!-- scrollToTop -->
     <!-- ================ -->
     <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
-
-      <!-- page wrapper start -->
-      <!-- ================ -->
+    
+    <!-- page wrapper start -->
+    <!-- ================ -->
     <div class="page-wrapper">
-         <!-- header-container start -->
+    
+      <!-- header-container start -->
       <div class="header-container">
         <header class="header  fixed   dark clearfix">
           <div class="container">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-5">
                 <!-- header-first start -->
                 <!-- ================ -->
                 <div class="header-first clearfix">
                   <!-- logo -->
                   <div id="logo" class="logo">
-                    <a href="index.html"><img id="logo_img" src="/images/logo_light_blue.png" alt="The Project"></a>
+                    <a href="/todays-tasks"><img id="logo_img" src="/images/logo_light_blue.png" alt="The Project"></a>
                   </div>
 
                   <!-- name-and-slogan -->
@@ -86,7 +88,7 @@
                 <!-- header-first end -->
 
               </div>
-              <div class="col-md-4">
+              <div class="col-md-7">
           
                 <!-- header-second start -->
                 <!-- ================ -->
@@ -120,11 +122,34 @@
                       <div class="collapse navbar-collapse" id="navbar-collapse-1">
                         <!-- main-menu -->
                         <ul class="nav navbar-nav ">
+                          <li class="dropdown ">
+                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
+                            <ul class="dropdown-menu">
+                              <li ><a href="index-shop.html">sort 1</a></li>
+                              <li ><a href="index-shop-2.html">sort 2</a></li>
+                            </ul>
+                          </li>
+                          <li class="dropdown ">
+                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+                            <ul class="dropdown-menu">
+                              <li ><a href="/tasks">Tasks</a></li>
+                              <li ><a href="/user-preferences">Preferences</a></li>
+                            </ul>
+                          </li>
                           <li>
                             <nav class="navbar navbar-default" role="navigation">
                               <ul class="nav navbar-nav ">
                                 <li>
-                                  <a href="/">About</a>    
+                                  <a href="/days">Calendar</a>    
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/about">About</a>    
                                 </li>
                               </ul>
                             </nav>
@@ -158,70 +183,15 @@
         </header>
         <!-- header end -->
       </div>
-      <!-- header-container end -->
-        
-        <div class="section default-bg text-muted">
-          <% if @errors %>
-            <h3>Errors</h3>
-            <% @errors.each do |error| %>
-              <h4>- <%= error %></h4>
-            <% end %>
-          <% end %>
-          <%= form_tag "/user-preferences", method: :post do  %>
-            <div class="row">
-              <div class="col-md-1"></div>
-              <div class="col-md-4">
-                <div class="form-group has-success has-feedback">
-                  <label class="control-label" for="inputSuccess5">Default start time</label>
-                  <input type="time" name="default_st" class="form-control" id="inputSuccess5">
-                </div>
-              </div>
-              <div class="col-md-7"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-1"></div>
-              <div class="col-md-4">
-                <div class="form-group has-success has-feedback">
-                  <label class="control-label" for="inputSuccess5">Default end time</label>
-                  <input type="time" name="default_et" class="form-control" id="inputSuccess5">
-                </div>
-              </div>
-              <div class="col-md-7"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-1"></div>
-              <div class="col-md-4">
-                <div class="form-group has-success has-feedback">
-                  <label class="control-label" for="inputSuccess5">Speed</label>
-                  <select class="form-control" name="speed">
-                    <option></option>
-                    <option>Fast</option>
-                    <option>Regular</option>
-                    <option>Slow</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-7"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-1"></div>
-              <div class="col-md-4">
-                <div class="form-group has-success has-feedback">
-                  <label class="control-label" for="inputSuccess5">Time Between</label>
-                  <input type="number" name="time_between" class="form-control" id="inputSuccess5">
-                </div>
-              </div>
-              <div class="col-md-7"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-10">
-                <button type="submit" class="btn btn-success btn-lg">Submit</button>
-              </div>
-            </div>
-          <% end %>
+      <div class="section default-bg text-muted">
+        <div container-fluid>
+          <h2>Default start time: <br><%= @user_preferences.default_start_time %></h2>
+          <h2>Default end time: <br><%= @user_preferences.default_end_time %></h2>
+          <h2>Time between: <br><%= @user_preferences.time_between %></h2>
+          <a href="/user-preferences/<%= current_user.id %>/edit"><button type="submit" class="btn btn-warning btn-lg">Edit</button></a>
         </div>
-      <!-- footer top start -->
+      </div>
+   <!-- footer top start -->
       <footer id="footer" class="clearfix dark">
 
         <!-- .footer start -->
@@ -255,11 +225,9 @@
           </div>
         </div>
       </footer>
-      <!-- footer end -->
-      
-      
-    </div>
-    <!-- page-wrapper end -->
+    <!-- footer end -->
+  </div>
+  <!-- page-wrapper end -->
 
     <!-- JavaScript files placed at the end of the document so the pages load faster -->
     <!-- ================================================== -->
@@ -279,7 +247,7 @@
     <!-- Contact form -->
     <script src="/plugins/jquery.validate.js"></script>
     <!-- Owl carousel javascript -->
-    <script type="/text/javascript" src="plugins/owlcarousel2/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/plugins/owlcarousel2/owl.carousel.min.js"></script>
     <!-- SmoothScroll javascript -->
     <script type="text/javascript" src="/plugins/jquery.browser.js"></script>
     <script type="text/javascript" src="/plugins/SmoothScroll.js"></script>
@@ -290,3 +258,4 @@
 
   </body>
 </html>
+
