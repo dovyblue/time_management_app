@@ -183,12 +183,21 @@
         </header>
         <!-- header end -->
       </div>
+      <% st = Time.parse(@user_preferences.default_start_time).strftime("%l:%M %p")  %>
+      <% et = Time.parse(@user_preferences.default_end_time).strftime("%l:%M %p")  %>
+      
       <div class="section default-bg text-muted">
-        <div container-fluid>
-          <h2>Default start time: <br><%= @user_preferences.default_start_time %></h2>
-          <h2>Default end time: <br><%= @user_preferences.default_end_time %></h2>
-          <h2>Time between: <br><%= @user_preferences.time_between %></h2>
-          <a href="/user-preferences/<%= current_user.id %>/edit"><button type="submit" class="btn btn-warning btn-lg">Edit</button></a>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-11">
+            <h2>Default start time:</h2> 
+            <h3><%= st %></h3>
+            <h2>Default end time: </h2>
+            <h3><%= et %></h3>
+            <h2>Time between:</h2>
+            <h3><%= @user_preferences.time_between %> min.</h3>
+            <a href="/user-preferences/<%= current_user.id %>/edit"><button type="submit" class="btn btn-warning btn-lg">Edit</button></a>
+          </div>
         </div>
       </div>
    <!-- footer top start -->

@@ -1,5 +1,7 @@
 class TaskToDosController < ApplicationController
+  before_action :authenticate_user!
   def new
+    # @task is temperedy
     @tasks = Task.where(user_id: [nil, current_user.id])
     @categories = Category.all
     @date = params[:date]
@@ -22,8 +24,6 @@ class TaskToDosController < ApplicationController
 
   def edit
     @day = Day.find_by(date: params[:date], user_id: current_user.id)
-    p '*' * 50
-    p @day
     @tasks_to_do = TaskToDo.where(day_id: @day.id, user_id: current_user.id)
     render 'edit.html.erb'
   end
@@ -44,5 +44,11 @@ class TaskToDosController < ApplicationController
       end_time: params[:day_end_t]
     )
     redirect_to "/days/#{day.date}"
+  end
+
+  def destroy
+    task_to_do = TaskToDo.find_by(id: params[:id])
+    tasks_to_do.destroy
+    redirect_to "/#{params[:date]}/task-to-dos/edit"
   end
 end

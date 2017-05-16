@@ -193,16 +193,11 @@
     
     
     
-      <div id="app">
-        <div v-for="category in categories">
-          <p>{{ category.name}}</p>
-        </div>
-        
-      </div>
-
-      <section class="pv-30 parallax light-translucent-bg slight background-img-1 padding-bottom-clear">
       
-    
+
+      <section class="pv-30 parallax light-translucent-bg slight padding-bottom-clear" style="background-image:url('/images/shutterstock_142959802-1920x1280 copy.jpg.jpg');">
+      
+<div id="app">
   <div class="container">
     <a href="/tasks/new" class="btn btn-info btn-lg">Add Task</a>
     <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Add Task</button>
@@ -217,26 +212,46 @@
             <div class="modal-body">
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess3">Task Name</label>
-                <input type="text" class="form-control" id="inputSuccess3">
+                <input v-model="taskName" type="text" class="form-control" id="inputSuccess3">
               </div>
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess3">Task Duration (in minutes)</label>
-                <input type="text" class="form-control" id="inputSuccess3">
+                <input v-model="taskDuration" type="text" class="form-control" id="inputSuccess3">
               </div>
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess3">Category</label>
-                <input type="text" class="form-control" id="inputSuccess3">
+                <input v-model="taskCategory" type="text" class="form-control" id="inputSuccess3">
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-sm btn-default">Save</button>
+              <button v-on:click="addTask()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Save</button>
             </div>
           </div>
         </div>
       </div>
 
-
+      
+        <div v-for="category in categories">
+          <h2 class="text-center">{{ category.name}}</h2>
+          <div class="separator with-icon"><i :class="category.icon"></i></div>
+          <div v-for="(task, index) in category.tasks" v-if="task.user_id === <%= current_user.id %>">
+            <div class="row" v-if="index % 6 === 0" >
+              <div v-for="n in 6">
+                <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
+                  <div class="ph-20 feature-box text-center" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
+                    <span class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
+                    <h4>{{ category.tasks[(index + n) - 1].name }}</h4>
+                    <div class="separator clearfix"></div>
+                    <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
+                    <a href="#" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <% @categories.each do |category| %>
         <h2 class="text-center"><%= category.name %></h2>
         <div class="separator with-icon"><i class="<%= category.icon %>"></i></div>
@@ -251,7 +266,13 @@
                     <span class="icon default-bg circle"><i class="<%= task.icon %>"></i></span>
                     <h4><%= task.name %></h4>
                     <div class="separator clearfix"></div>
-                    <p><%= task.length_time %> min.</p>
+                    <% hours = task.length_time / 60 %>
+                    <% min = task.length_time % 60 %>
+                    <% if hours > 0 %>
+                      <p><%= hours %> hr. <%= min %> min.</p>
+                    <% else %>
+                      <p><%= min %> min.</p>
+                    <% end %>
                     <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
                   </div>
                 </div>
@@ -262,7 +283,13 @@
                     <span class="icon dark-bg circle"><i class="<%= task.icon %>"></i></span>
                     <h4><%= task.name %></h4>
                     <div class="separator clearfix"></div>
-                    <p><%= task.length_time %> min.</p>
+                    <% hours = task.length_time / 60 %>
+                    <% min = task.length_time % 60 %>
+                    <% if hours > 0 %>
+                      <p><%= hours %> hr. <%= min %> min.</p>
+                    <% else %>
+                      <p><%= min %> min.</p>
+                    <% end %>
                     <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
                   </div>
                 </div>

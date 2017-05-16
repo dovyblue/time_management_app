@@ -3,8 +3,6 @@ class UserPreferencesController < ApplicationController
 
   def index
     @user_preferences = UserPreference.find_by(user_id: current_user.id)
-    p "*" * 50
-    p @user_preferences
     render 'index.html.erb'
   end
 
@@ -20,6 +18,9 @@ class UserPreferencesController < ApplicationController
       time_between: params[:time_between]
     )
     if user_preference.save
+      p "*" * 50
+      p user_preference.speed
+      
       housework = Category.find_by(name: "Housework")
       personal = Category.find_by(name: "Personal")
       errands = Category.find_by(name: "Errands")

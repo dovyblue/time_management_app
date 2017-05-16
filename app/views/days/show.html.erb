@@ -129,13 +129,6 @@
                         <!-- main-menu -->
                         <ul class="nav navbar-nav ">
                           <li class="dropdown ">
-                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
-                            <ul class="dropdown-menu">
-                              <li ><a href="index-shop.html">sort 1</a></li>
-                              <li ><a href="index-shop-2.html">sort 2</a></li>
-                            </ul>
-                          </li>
-                          <li class="dropdown ">
                             <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
                             <ul class="dropdown-menu">
                               <li ><a href="/tasks">Tasks</a></li>
@@ -190,148 +183,123 @@
         <!-- header end -->
       </div>
       <!-- header-container end -->
-    
- 
-  
-    
-    
-    
-    
 
-<section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
-  <% str_time = Time.parse(@day.start_time) %>
-  <% ed_time = Time.parse(@day.end_time) %>
-  <div class="container">
-    <h4>id: <%= @day.id %></h4>
-    <% date = Time.parse(@day.date) %>
-    <h2><%= date.strftime("%A, %b %d") %></h2>
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <div class="body">
-            <h3 class="title">Start day <%= str_time.strftime("%l:%M %p") %></h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% if @task_to_dos.length >= 1%>
-      <% @day.sorted_tasks.each do |task| %>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-              <span class="icon without-bg"><i class="fa fa-diamond" style="color: #09afdf;"></i></span>
-              <div class="body">
-                <div class="row">
-                  <div class="col-md-8">
-                    <h3 class="title"><%= task.task.name %></h3> 
-                    <% if task.start_time == "" %>
-                      <h4><%= str_time.strftime("%l:%M %P") %></h4>
-                      <% str_time += (task.task.length_time * 60) %>
-                    <% else %>
-                      <% str_time = Time.parse(task.start_time) %>
-                      <h4><%= str_time.strftime("%l:%M %P") %></h4>
-                      <% str_time += (task.task.length_time * 60) %>
-                    <% end %>
-                  </div>
-                  <div class="col-md-3">
-                    Est. Duration
-                    <h4><%= task.task.length_time %> min.</h4>
-                  </div>
-                  <div class="col-md-1">
-                    <% if task.importance == "1" %>
-                      <h3><i class="glyphicon glyphicon-tag" style="color: #ff0006;"></i></h3>
-                    <% elsif task.importance == "2"  %>
-                      <h3><i class="glyphicon glyphicon-tag" style="color: #ffde00;"></i></h3>
-                    <% else %>
-                      <h3><i class="glyphicon glyphicon-tag" style="color: #05c500;"></i></h3>
-                    <% end %>
-                    <a href="#">Done</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <h3>there is no tasks for this day</h3>
-      <h3><a href="/<%= @day.date %>/task-to-dos/new">add task</a></h3>
-    <% end %>
-    <div class="row">
-      <div class="col-md-4 col-md-offset-4">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <div class="body">
-            <h3 class="title">End day <%= ed_time.strftime("%l:%M %p") %></h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<hr>
-<hr>
-<% if @task_to_dos.length >= 1%>
-  <h4>tasks to do</h4>
-  <% @day.sorted_tasks.each do |task| %>
-    <p><%= task.id %></p>
-    <p><%= task.task.name %></p>
-    <p>start time: <%= task.start_time %></p>
-    <p>end time: <%= task.end_time %></p>
-    <p>length time: <%= task.task.length_time %></p>
-    <p>importance: <%= task.importance %></p>
-    <% if task.start_time == "" %>
-      <p>time: <%= str_time.strftime("%I:%M:%S %p") %></p>
-      <% str_time += (task.task.length_time * 60) %>
-    <% else %>
-      <% str_time = Time.parse(task.start_time) %>
-      <p>time: <%= str_time.strftime("%I:%M:%S %p") %></p>
-      <% str_time += (task.task.length_time * 60) %>
-    <% end %>
-    <p>-----------------</p>
-  <% end %>
-<% else %>
-  <p>there is no tasks for this day</p>
-  <a href="/<%= @day.date %>/task-to-dos/new">add task</a>
-<% end %>
-<h2>end time: <%= ed_time.strftime("%I:%M:%S %p") %></h2>
-<a href="/<%= @day.date %>/task-to-dos/edit"><button>Edit</button></a>
-
-<!-- footer top start -->
-    <footer id="footer" class="clearfix dark">
-
-      <!-- .footer start -->
-      <!-- ================ -->
-      <div class="footer">
+      <section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
+        <% str_time = Time.parse(@day.start_time) %>
+        <% ed_time = Time.parse(@day.end_time) %>
         <div class="container">
-          <div class="footer-inner">
+          <% date = Time.parse(@day.date).strftime("%A, %b %d") %>
+          <h2 class="text-center" style="color: #09afdf;"><%= date %></h2>
+          <div class="separator"></div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+              <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                <div class="body">
+                  <h3 class="title">Start day <%= str_time.strftime("%l:%M %p") %></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if @task_to_dos.length >= 1%>
+            <% @day.sorted_tasks.each do |task| %>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                    <span class="icon without-bg"><i class="<%= task.task.icon %>" style="color: #09afdf;"></i></span>
+                    <div class="body">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <h3 class="title"><%= task.task.name %></h3> 
+                          <% if task.start_time == "" %>
+                            <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                            <% str_time += (task.task.length_time * 60) %>
+                          <% else %>
+                            <% str_time = Time.parse(task.start_time) %>
+                            <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                            <% str_time += (task.task.length_time * 60) %>
+                          <% end %>
+                        </div>
+                        <div class="col-md-3">
+                          Est. Duration
+                          <h4><%= task.task.length_time %> min.</h4>
+                        </div>
+                        <div class="col-md-1">
+                          <% if task.importance == "1" %>
+                            <h3><i class="glyphicon glyphicon-tag" style="color: #ff0006;"></i></h3>
+                          <% elsif task.importance == "2"  %>
+                            <h3><i class="glyphicon glyphicon-tag" style="color: #ffde00;"></i></h3>
+                          <% else %>
+                            <h3><i class="glyphicon glyphicon-tag" style="color: #05c500;"></i></h3>
+                          <% end %>
+                          <a href="#">Done</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <h3 class="text-center" style="color: red;">there is no tasks for this day</h3>
             <div class="row">
-              <div class="col-md-6 col-md-offset-3">
-                <div class="footer-content text-center padding-ver-clear">
-                  <div class="logo-footer"><img id="logo-footer" class="center-block" src="/images/logo_light_blue.png" alt=""></div>
-                  <p>Timely is a time management app that tracks the duration of the user’s activities, thus enabling the user to accurately set up his daily schedule. Users can customize preprogrammed tasks, add new tasks, create an editable to-do list for a specific date and ultimately complete tasks sorted by importance or specific scheduled times in a timely fashion.</p>
-                  <ul class="list-inline mb-20">
-                    <li><i class="text-default fa fa-map-marker pr-5"></i>One infinity loop, 54100</li>
-                    <li><a href="tel:+00 1234567890" class="link-dark"><i class="text-default fa fa-phone pl-10 pr-5"></i>+00 1234567890</a></li>
-                    <li><a href="mailto:info@theproject.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>info@theproject.com</a></li>
-                  </ul>
-                  <ul class="social-links circle animated-effect-1 margin-clear">
-                    <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-                    <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-                    <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
-                  </ul>
-                  <div class="separator"></div>
-                  <p class="text-center margin-clear">Copyright © 2017 The Project by <a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/">Dov Bluming </a>. All Rights Reserved</p>
+              <div class="col-md-2 col-md-offset-5">
+                <a href="/<%= @day.date %>/task-to-dos/new" class="btn btn-default btn-lg">Add Tasks</a>
+              </div>
+            </div>
+            <br>
+          <% end %>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+              <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                <div class="body">
+                  <h3 class="title">End day <%= ed_time.strftime("%l:%M %p") %></h3>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+              <a href="/<%= @day.date %>/task-to-dos/edit" class="btn btn-warning btn-lg">Edit</a>
+            </div>
+          </div>
+      </section>
+      <!-- footer top start -->
+      <footer id="footer" class="clearfix dark">
+
+        <!-- .footer start -->
+        <!-- ================ -->
+        <div class="footer">
+          <div class="container">
+            <div class="footer-inner">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="footer-content text-center padding-ver-clear">
+                    <div class="logo-footer"><img id="logo-footer" class="center-block" src="/images/logo_light_blue.png" alt=""></div>
+                    <p>Timely is a time management app that tracks the duration of the user’s activities, thus enabling the user to accurately set up his daily schedule. Users can customize preprogrammed tasks, add new tasks, create an editable to-do list for a specific date and ultimately complete tasks sorted by importance or specific scheduled times in a timely fashion.</p>
+                    <ul class="list-inline mb-20">
+                      <li><i class="text-default fa fa-map-marker pr-5"></i>One infinity loop, 54100</li>
+                      <li><a href="tel:+00 1234567890" class="link-dark"><i class="text-default fa fa-phone pl-10 pr-5"></i>+00 1234567890</a></li>
+                      <li><a href="mailto:info@theproject.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>info@theproject.com</a></li>
+                    </ul>
+                    <ul class="social-links circle animated-effect-1 margin-clear">
+                      <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                      <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                      <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                      <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                      <li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
+                    </ul>
+                    <div class="separator"></div>
+                    <p class="text-center margin-clear">Copyright © 2017 The Project by <a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/">Dov Bluming </a>. All Rights Reserved</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     <!-- footer end -->
   </div>
   <!-- page-wrapper end -->

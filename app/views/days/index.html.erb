@@ -122,13 +122,6 @@
                         <!-- main-menu -->
                         <ul class="nav navbar-nav ">
                           <li class="dropdown ">
-                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
-                            <ul class="dropdown-menu">
-                              <li ><a href="index-shop.html">sort 1</a></li>
-                              <li ><a href="index-shop-2.html">sort 2</a></li>
-                            </ul>
-                          </li>
-                          <li class="dropdown ">
                             <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
                             <ul class="dropdown-menu">
                               <li ><a href="/tasks">Tasks</a></li>
@@ -238,6 +231,11 @@
         </div>
       </div>
     </footer>
+    <%= form_tag "/days", :style => "display: hidden", :id => "form", method: :post do  %>
+      <input type="hidden" id="day" name="date">
+    <% end %>
+   
+
     <!-- footer end -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="/js/calendario.js"></script>
@@ -294,7 +292,10 @@
           $('div.fc-row > div').on('onDayClick.calendario', function(e, dateprop) {
             // console.log(dateprop);
             var date = dateprop.year +  "-" + dateprop.month + "-" + dateprop.day;
-            location = "/days/" + date;
+            $("#day").val(date);
+            $("#form").submit();
+            // location = "/days/" + date;
+            // console.log(date);
           });
         });
         

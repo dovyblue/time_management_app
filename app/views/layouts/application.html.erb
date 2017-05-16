@@ -15,11 +15,13 @@
   
 
   <body>
-    <% flash.each do |name, massage| %>
-      <h4><%= massage %></h4>
-    <% end %>
-  
-    <%= yield %>
     
+    <%= yield %>
+    <% if current_user %>
+      <%= javascript_tag do %> 
+        window.id = <%= current_user.id %>;
+      <% end %>
+    <% end %>
   </body>
+
 </html>

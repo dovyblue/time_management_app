@@ -190,100 +190,94 @@
         <!-- header end -->
       </div>
       <!-- header-container end -->
-    <section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          
-          
-            
-            <!-- <div class="col-md-3"> -->
-            <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-            <div class="body">
-            
-              <h3 class="title">Clean Code </h3>
-              <h4>4:30pm</h4>
-              
+      <% if @task_to_dos %>
+        <section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
+          <% str_time = Time.parse(@day.start_time) %>
+          <% ed_time = Time.parse(@day.end_time) %>
+          <div class="container">
+            <% date = Time.parse(@day.date) %>
+            <h2 class="text-center"><%= date.strftime("%A, %b %d") %></h2>
+            <br>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                  <div class="body">
+                    <h3 class="title">Start day <%= str_time.strftime("%l:%M %p") %></h3>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- </div> -->
-            <!-- <div class="col-md-3">
-              <h4 class="title">Clean Code &amp; Design</h4>
-              <p>Voluptatem ad  consectetur.</p>
-            </div> -->
-            <!-- <div class="col-md-4">
-              <h4 class="title">Clean Code &amp; Design</h4>
-              <p>Voluptatem ad provident reiciendis lorem dolor consectetur.</p>
-            </div> -->
-            <!-- <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a> -->
-          <!-- </div> -->
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
+           
+              <% @day.sorted_tasks.each do |task| %>
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                      <span class="icon without-bg"><i class="<%= task.task.icon %>" style="color: #09afdf;"></i></span>
+                      <div class="body">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <h3 class="title"><%= task.task.name %></h3> 
+                            <% if task.start_time == "" %>
+                              <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                              <% str_time += (task.task.length_time * 60) %>
+                            <% else %>
+                              <% str_time = Time.parse(task.start_time) %>
+                              <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                              <% str_time += (task.task.length_time * 60) %>
+                            <% end %>
+                          </div>
+                          <div class="col-md-3">
+                            Est. Duration
+                            <h4><%= task.task.length_time %> min.</h4>
+                          </div>
+                          <div class="col-md-1">
+                            <% if task.importance == "1" %>
+                              <h3><i class="glyphicon glyphicon-tag" style="color: #ff0006;"></i></h3>
+                            <% elsif task.importance == "2"  %>
+                              <h3><i class="glyphicon glyphicon-tag" style="color: #ffde00;"></i></h3>
+                            <% else %>
+                              <h3><i class="glyphicon glyphicon-tag" style="color: #05c500;"></i></h3>
+                            <% end %>
+                            <a href="#">Done</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            
+            <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                  <div class="body">
+                    <h3 class="title">End day <%= ed_time.strftime("%l:%M %p") %></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-          <span class="icon without-bg"><i class="fa fa-diamond"></i></span>
-          <div class="body">
-            <h4 class="title">Clean Code &amp; Design</h4>
-            <p>Voluptatem ad provident non repudiandae beatae cupiditate amet reiciendis lorem dolor consectetur.</p>
-            <a href="page-services.html">Read More<i class="pl-5 fa fa-angle-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        </section>
+      <% else %>
+        <h3>there is no tasks for this day</h3>
+        <h3><a href="/days/<%= @day %>">add task</a></h3>
+      <% end %>
 
-
-
+<hr>
+<hr>
 <h1>Today's list</h1>
 <h2><%= @date.strftime("%A, %b %d") %></h2>
+
 <h3><a href="/days">Calendar</a></h3>
 <h3><a href="/tasks">Tasks</a></h3>
 
-<% if @tasks_to_do %>
-  <% str_time = Time.parse(@today.start_time) %>
-  <% ed_time = Time.parse(@today.end_time) %>
-  <h3>start time: <%= @today.start_time %></h3>
+<% if @task_to_dos %>
+  <h4>id: <%= @day.id %></h4>
+  <% str_time = Time.parse(@day.start_time) %>
+  <% ed_time = Time.parse(@day.end_time) %>
+  <h3>start time: <%= @day.start_time %></h3>
   <h4>tasks to do</h4>
-  <% @today.sorted_tasks.each do |task| %>
+  <% @day.sorted_tasks.each do |task| %>
     <p><%= task.id %></p>
     <p><%= task.task.name %></p>
     <p>start time: <%= task.start_time %></p>
@@ -300,7 +294,7 @@
     <% end %>
     <p>-----------------</p>
   <% end %>
-  <h3>end time: <%= @today.end_time %></h3>
+  <h3>end time: <%= @day.end_time %></h3>
 <% else %>
   <p>there is no tasks for this day</p>
   <a href="/days/<%= @date %>">add task</a>

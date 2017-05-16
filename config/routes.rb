@@ -32,11 +32,13 @@ Rails.application.routes.draw do
   post '/task-to-dos' => 'task_to_dos#create'
   get '/:date/task-to-dos/edit' => 'task_to_dos#edit'
   patch '/task-to-dos' => 'task_to_dos#update'
+  delete '/:date/task_to_dos/:id' => 'task_to_dos#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api do
     namespace :v1 do
       get '/tasks' => 'tasks#index'
+      post '/tasks' => 'tasks#create'
     end
   end
 end

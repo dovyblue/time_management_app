@@ -11,7 +11,7 @@ class TasksController < ApplicationController
 
   def create
     task = Task.new(
-      name: params[:task_name],
+      name: params[:task_name].capitalize,
       length_time: params[:length_time],
       notes: params[:notes],
       category_id: params[:category],
