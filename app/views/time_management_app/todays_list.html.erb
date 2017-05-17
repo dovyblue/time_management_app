@@ -199,7 +199,7 @@
             <h2 class="text-center"><%= date.strftime("%A, %b %d") %></h2>
             <br>
             <div class="row">
-              <div class="col-md-4 col-md-offset-4">
+              <div class="col-md-6 col-md-offset-3">
                 <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
                   <div class="body">
                     <h3 class="title">Start day <%= str_time.strftime("%l:%M %p") %></h3>
@@ -215,7 +215,7 @@
                       <span class="icon without-bg"><i class="<%= task.task.icon %>" style="color: #09afdf;"></i></span>
                       <div class="body">
                         <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-4">
                             <h3 class="title"><%= task.task.name %></h3> 
                             <% if task.start_time == "" %>
                               <h4><%= str_time.strftime("%l:%M %P") %></h4>
@@ -225,6 +225,14 @@
                               <h4><%= str_time.strftime("%l:%M %P") %></h4>
                               <% str_time += (task.task.length_time * 60) %>
                             <% end %>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="app-stopwach-main">
+                              <h3><clock>00:00:00</clock></h3>
+                              <button class="btn btn-success btn-sm start">start</button>
+                              <button class="btn btn-danger btn-sm stop" style="display: none;">stop</button>
+                              <button class="btn btn-warning btn-sm reset">reset</button>
+                            </div>
                           </div>
                           <div class="col-md-3">
                             Est. Duration
@@ -248,7 +256,7 @@
               <% end %>
             
             <div class="row">
-              <div class="col-md-4 col-md-offset-4">
+              <div class="col-md-6 col-md-offset-3">
                 <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
                   <div class="body">
                     <h3 class="title">End day <%= ed_time.strftime("%l:%M %p") %></h3>

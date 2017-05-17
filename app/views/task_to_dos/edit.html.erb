@@ -227,7 +227,7 @@
                             <%= ts.number_field :custom_duration, :value => task.custom_duration, :class => "form-control", :placeholder => "minutes" %>
                           </div>
                           <div class="col-md-2">
-                            <h4>Impotance</h4>
+                            <h4>Importance</h4>
                             <%= ts.select :importance, [1, 2, 3], :selected => task.importance, :class => "form-control"%>
                           </div>
                           <div class="col-md-3">
@@ -245,7 +245,7 @@
                          
 
                           <div class="col-md-2">
-                            <!-- <button type="button" class="btn btn-danger">Delete</button> -->
+                            <button type="button" class="btn btn-danger">Delete</button>
                           </div>
                         </div>               
                       </div>

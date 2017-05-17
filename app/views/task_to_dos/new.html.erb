@@ -195,8 +195,39 @@
 
 
 
-<section class="pv-30 parallax light-translucent-bg slight background-img-1 padding-bottom-clear">
+<section class="pv-30 parallax light-translucent-bg slight  padding-bottom-clear">
   <div class="container">
+    <div id="app">
+
+
+      <div v-for="category in categories">
+        <h3 class="text-center">{{ category.name}}</h3>
+        <div class="separator with-icon"><i :class="category.icon"></i></div>
+        <div v-for="(task, index) in category.tasks" v-if="task.user_id === <%= current_user.id %>">
+          <div class="row" v-if="index % 12 === 0" >
+            <div v-for="n in 12">
+              <div v-if="category.tasks[(index + n) - 1]" class="col-md-1">
+                <div class="ph-20 feature-box text-center" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
+                  <span v-if="dflt" class="icon small default-bg circle"><i v-on:click="addToList(category.tasks[(index + n) - 1], $event)" :class="category.tasks[(index + n) - 1].icon"></i></span>
+                  <!-- <span v-else class="icon small dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span> -->
+                  <h6>{{ category.tasks[(index + n) - 1].name }}</h6>
+                  
+                  <p>:{{ category.tasks[(index + n) - 1].length_time }}</p>
+                  
+                  <!-- <p style="display: none;">{{ dflt = !dflt }}</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="btn radius-50 btn-success btn-xl" v-on:click="submitTasks()">Submit</a>
+      <input v-model="date" type="hidden"  :value="<%= @date %>">
+
+    </div>
+ 
+
+
     <% date = Time.parse(@date).strftime("%A, %b %d") %>
     <h2 class="text-center" style="color: #09afdf;">- <%= date %> -</h2>
     <% @categories.each do |category| %>
@@ -238,7 +269,8 @@
       <% end %>
     <% end %>
     <a href="/tasks" class="btn radius-50 btn-default btn-lg">Add task or edit</a>
-    <a href="#" class="btn radius-50 btn-success btn-xl">Submit</a>
+    <button v-on:click="submitTasks()"></button>
+    
   </div>
 </section>
 <hr>

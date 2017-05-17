@@ -195,14 +195,14 @@
     
       
 
-      <section class="pv-30 parallax light-translucent-bg slight padding-bottom-clear" style="background-image:url('/images/shutterstock_142959802-1920x1280 copy.jpg.jpg');">
+      <section class="pv-30 parallax light-translucent-bg slight padding-bottom-clear">
       
 <div id="app">
   <div class="container">
     <a href="/tasks/new" class="btn btn-info btn-lg">Add Task</a>
-    <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm">Add Task</button>
+    <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm-1">Add Task</button>
 
-      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal fade bs-example-modal-sm-1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
@@ -212,15 +212,17 @@
             <div class="modal-body">
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess3">Task Name</label>
-                <input v-model="taskName" type="text" class="form-control" id="inputSuccess3">
+                <input v-model="taskName" type="text" class="form-control" id="input1">
               </div>
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess3">Task Duration (in minutes)</label>
-                <input v-model="taskDuration" type="text" class="form-control" id="inputSuccess3">
+                <input v-model="taskDuration" type="text" class="form-control" id="input2">
               </div>
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess3">Category</label>
-                <input v-model="taskCategory" type="text" class="form-control" id="inputSuccess3">
+                <select v-model="taskCategory" class="form-control" id="input3">
+                <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                </select>
               </div>
             </div>
             <div class="modal-footer">
@@ -230,28 +232,58 @@
           </div>
         </div>
       </div>
-
-      
-        <div v-for="category in categories">
-          <h2 class="text-center">{{ category.name}}</h2>
-          <div class="separator with-icon"><i :class="category.icon"></i></div>
-          <div v-for="(task, index) in category.tasks" v-if="task.user_id === <%= current_user.id %>">
-            <div class="row" v-if="index % 6 === 0" >
-              <div v-for="n in 6">
-                <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
-                  <div class="ph-20 feature-box text-center" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
-                    <span class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
-                    <h4>{{ category.tasks[(index + n) - 1].name }}</h4>
-                    <div class="separator clearfix"></div>
-                    <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
-                    <a href="#" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                  </div>
+      <div class="modal fade bs-example-modal-sm-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="mySmallModalLabel">Edit Task</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess3">Task Name</label>
+                <input v-model="taskName" type="text" class="form-control" id="inputSuccess1">
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess3">Task Duration (in minutes)</label>
+                <input v-model="taskDuration" type="text" class="form-control" id="inputSuccess2">
+              </div>
+              <div class="form-group has-success has-feedback">
+                <label class="control-label" for="inputSuccess3">Category</label>
+                <select v-model="taskCategory" class="form-control" id="inputSuccess3">
+                  <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" v-on:click="deleteTask()">Delete</button>
+              <button v-on:click="updateTask()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-for="category in categories">
+        <h2 class="text-center">{{ category.name}}</h2>
+        <div class="separator with-icon"><i :class="category.icon"></i></div>
+        <div v-for="(task, index) in category.tasks" v-if="task.user_id === <%= current_user.id %>">
+          <div class="row" v-if="index % 6 === 0" >
+            <div v-for="n in 6">
+              <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
+                <div class="ph-20 feature-box text-center" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
+                  <span v-if="dflt" class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
+                  <span v-else class="icon dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
+                  <h4>{{ category.tasks[(index + n) - 1].name }}</h4>
+                  <div class="separator clearfix"></div>
+                  <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
+                  <a href="#" class="link-dark" data-toggle="modal" data-target=".bs-example-modal-sm-2" v-on:click="showInfo(category.tasks[(index + n) - 1])">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
+                  <!-- <p style="display: none;">{{ dflt = !dflt }}</p> -->
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
       <% @categories.each do |category| %>
         <h2 class="text-center"><%= category.name %></h2>
         <div class="separator with-icon"><i class="<%= category.icon %>"></i></div>
