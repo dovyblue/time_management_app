@@ -92,9 +92,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
           }
         });
         request.done(location = "/" + date + "/task-to-dos/edit");
+       
       },
       deleteTask: function() {
-        // console.log(this.taskId);
         var request = $.ajax({
           method: "DELETE",
           url: "/api/v1/tasks/" + this.taskId,
@@ -107,9 +107,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.taskDuration = '';
         this.taskCategory = '';
         this.taskId = '';
+      },
+      sortStToLg: function() {
+        // for (var i = 0; i < this.categories.length; i++) {
+          console.log(this.categories[0].tasks.length);
+          return this.categories[0].tasks.sort(function(task1, task2) {
+            console.log(task1.length_time);
+            console.log(task2.length_time);
+            console.log(task1.length_time > task2.length_time);
+            return task1.length_time > task2.length_time;
+          });
+        // }
       }
     }
   });
 });
 
 
+// modifiedContacts: function() {
+//         return this.contacts.sort( function(contact1, contact2) {
+//           return contact1[this.sortAttr].toLowerCase().localeCompare(contact2[this.sortAttr].toLowerCase());
+//         }.bind(this));
+//       }

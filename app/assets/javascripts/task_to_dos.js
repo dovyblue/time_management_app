@@ -1,17 +1,13 @@
-function addToList(input) {
-  // if (input.classList.value === "icon default-bg circle") {
-  //   input.classList.value = "icon small default-bg circle";
-  // } else if (input.classList.value === "icon small default-bg circle") {
-  //   input.classList.value = "icon default-bg circle";
-  // } else if (input.classList.value === "icon dark-bg circle") {
-  //   input.classList.value = "icon small dark-bg circle";
-  // } else {
-  //   input.classList.value = "icon dark-bg circle";
-  // }
-  if (input.style['color'] === 'red') {
-    input.style['color'] = 'white' ;
-  } else {
-    input.style['color'] = 'red';
-    console.log(input);
-  }
+function deleteTaskToDo(taskId) {
+  console.log("works!");
+  var date = window.location.pathname.split("").splice(1, 10).join("");
+  var request = $.ajax({
+    method: "DELETE",
+    headers: {
+      'X-Transaction': 'POST Example',
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "/task-to-dos/" + taskId,
+  });
+  request.done(location = "/" + date + "/task-to-dos/edit");
 }

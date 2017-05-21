@@ -228,24 +228,19 @@
                           </div>
                           <div class="col-md-2">
                             <h4>Importance</h4>
-                            <%= ts.select :importance, [1, 2, 3], :selected => task.importance, :class => "form-control"%>
+                            <%= ts.select :importance, [1, 2, 3], :selected => task.importance, :class => "form-control", :value => task.importance%>
                           </div>
                           <div class="col-md-3">
                             <div class="radio">
                               <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Start By   
-                              </label>
-                              <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>End By 
+                                <input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1" checked>Start By   
                               </label>
                             </div>
                             <%= ts.time_field :start_time, :value => task.start_time, :class => "form-control" %>
-                            <!-- <input type="time" class="form-control" placeholder="duration">  -->
+                            
                           </div>
-                         
-
                           <div class="col-md-2">
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger" onclick="deleteTaskToDo(<%= task.id %>)">Delete</button>
                           </div>
                         </div>               
                       </div>

@@ -62,6 +62,7 @@
   <!-- "gradient-background-header": applies gradient background to header -->
   <!-- "page-loader-1 ... page-loader-6": add a page loader to the page (more info @components-page-loaders.html) -->
   <body class="no-trans    ">
+    <div id="app">
 
     <!-- scrollToTop -->
     <!-- ================ -->
@@ -131,8 +132,8 @@
                           <li class="dropdown ">
                             <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
                             <ul class="dropdown-menu">
-                              <li ><a href="index-shop.html">sort 1</a></li>
-                              <li ><a href="index-shop-2.html">sort 2</a></li>
+                              <li ><a href="#" v-on:click="sortStToLg()">sort shortest to longest</a></li>
+                              <li ><a href="#" >sort 2</a></li>
                             </ul>
                           </li>
                           <li class="dropdown ">
@@ -197,9 +198,8 @@
 
       <section class="pv-30 parallax light-translucent-bg slight padding-bottom-clear">
       
-<div id="app">
   <div class="container">
-    <a href="/tasks/new" class="btn btn-info btn-lg">Add Task</a>
+    
     <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm-1">Add Task</button>
 
       <div class="modal fade bs-example-modal-sm-1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -265,7 +265,11 @@
       <div v-for="category in categories">
         <h2 class="text-center">{{ category.name}}</h2>
         <div class="separator with-icon"><i :class="category.icon"></i></div>
-        <div v-for="(task, index) in category.tasks" v-if="task.user_id === <%= current_user.id %>">
+        <!-- <div v-for="task in category.tasks">
+          <p>{{task.name}}</p>
+          <p>{{task.length_time}}</p>
+        </div> -->
+        <div v-for="(task, index) in category.tasks">
           <div class="row" v-if="index % 6 === 0" >
             <div v-for="n in 6">
               <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
@@ -284,53 +288,7 @@
         </div>
       </div>
     </div>
-      <% @categories.each do |category| %>
-        <h2 class="text-center"><%= category.name %></h2>
-        <div class="separator with-icon"><i class="<%= category.icon %>"></i></div>
-        <% c_tasks = category.tasks.where(user_id: current_user.id).order(:name) %>
-        <% bg_c = true %>
-        <% c_tasks.each_slice(6) do |six_tasks| %>
-          <div class="row">
-            <% six_tasks.each do |task| %>
-              <% if bg_c %>
-                <div class="col-md-2 ">
-                  <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
-                    <span class="icon default-bg circle"><i class="<%= task.icon %>"></i></span>
-                    <h4><%= task.name %></h4>
-                    <div class="separator clearfix"></div>
-                    <% hours = task.length_time / 60 %>
-                    <% min = task.length_time % 60 %>
-                    <% if hours > 0 %>
-                      <p><%= hours %> hr. <%= min %> min.</p>
-                    <% else %>
-                      <p><%= min %> min.</p>
-                    <% end %>
-                    <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                  </div>
-                </div>
-                <% bg_c = false %>
-              <% else %>
-                <div class="col-md-2 ">
-                  <div class="ph-20 feature-box text-center object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
-                    <span class="icon dark-bg circle"><i class="<%= task.icon %>"></i></span>
-                    <h4><%= task.name %></h4>
-                    <div class="separator clearfix"></div>
-                    <% hours = task.length_time / 60 %>
-                    <% min = task.length_time % 60 %>
-                    <% if hours > 0 %>
-                      <p><%= hours %> hr. <%= min %> min.</p>
-                    <% else %>
-                      <p><%= min %> min.</p>
-                    <% end %>
-                    <a href="/tasks/<%= task.id %>/edit" class="link-dark">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                  </div>
-                </div>
-                <% bg_c = true %>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      <% end %>
+      
     </div>
     </section>
 

@@ -202,43 +202,49 @@
             </div>
           </div>
           <% if @task_to_dos.length >= 1%>
-            <% @day.sorted_tasks.each do |task| %>
-              <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                  <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
-                    <span class="icon without-bg"><i class="<%= task.task.icon %>" style="color: #09afdf;"></i></span>
-                    <div class="body">
-                      <div class="row">
-                        <div class="col-md-8">
-                          <h3 class="title"><%= task.task.name %></h3> 
-                          <% if task.start_time == "" %>
-                            <h4><%= str_time.strftime("%l:%M %P") %></h4>
-                            <% str_time += (task.task.length_time * 60) %>
-                          <% else %>
-                            <% str_time = Time.parse(task.start_time) %>
-                            <h4><%= str_time.strftime("%l:%M %P") %></h4>
-                            <% str_time += (task.task.length_time * 60) %>
-                          <% end %>
-                        </div>
-                        <div class="col-md-3">
-                          Est. Duration
-                          <h4><%= task.task.length_time %> min.</h4>
-                        </div>
-                        <div class="col-md-1">
-                          <% if task.importance == "1" %>
-                            <h3><i class="glyphicon glyphicon-tag" style="color: #ff0006;"></i></h3>
-                          <% elsif task.importance == "2"  %>
-                            <h3><i class="glyphicon glyphicon-tag" style="color: #ffde00;"></i></h3>
-                          <% else %>
-                            <h3><i class="glyphicon glyphicon-tag" style="color: #05c500;"></i></h3>
-                          <% end %>
-                          <a href="#">Done</a>
+            <% if @day.sorted_tasks.class == String %>
+              <h2><%= @day.sorted_tasks %></h2>
+              <a href="#"><button class="btn btn-default">Edit</button></a>
+            <% else %>
+              <% @day.sorted_tasks.each do |task| %>
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+                      <span class="icon without-bg"><i class="<%= task.task.icon %>" style="color: #09afdf;"></i></span>
+                      <div class="body">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <h3 class="title"><%= task.task.name %></h3> 
+                            <% if task.start_time == "" %>
+                              <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                              <% str_time += (task.task.length_time * 60) + (@time_btw * 60) %>
+                            <% else %>
+                              <% str_time = Time.parse(task.start_time) %>
+                              <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                              <% str_time += (task.task.length_time * 60) + (@time_btw * 60) %>
+                              <%= "st" %>
+                            <% end %>
+                            
+                          </div>
+                          <div class="col-md-3">
+                            Est. Duration
+                            <h4><%= task.task.length_time %> min.</h4>
+                          </div>
+                          <div class="col-md-1">
+                            <% if task.importance == "1" %>
+                              <h3><i class="glyphicon glyphicon-tag" style="color: #ff0006;"></i></h3>
+                            <% elsif task.importance == "2"  %>
+                              <h3><i class="glyphicon glyphicon-tag" style="color: #ffde00;"></i></h3>
+                            <% else %>
+                              <h3><i class="glyphicon glyphicon-tag" style="color: #05c500;"></i></h3>
+                            <% end %>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
           <% else %>
             <h3 class="text-center" style="color: red;">there are no tasks for this day</h3>
@@ -260,11 +266,11 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-11">
-              <a href="/<%= @day.date %>/task-to-dos/edit" class="btn btn-warning btn-lg">Edit</a>
-            </div>
+          <div class="col-md-4 col-md-offset-4">
+            <a href="/<%= @day.date %>/task-to-dos/new" class="btn btn-default btn-lg">Add Tasks</a>
+            <a href="/<%= @day.date %>/task-to-dos/edit" class="btn btn-warning btn-lg">Edit</a>
           </div>
+        </div>
       </section>
       <!-- footer top start -->
       <footer id="footer" class="clearfix dark">

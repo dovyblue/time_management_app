@@ -22,6 +22,7 @@ class DaysController < ApplicationController
   def show
     @day = Day.find_by(date: params[:date], user_id: current_user.id)
     @task_to_dos = TaskToDo.where(day_id: @day.id, user_id: current_user.id)
+    @time_btw = current_user.user_preferences[0].time_between
     render 'show.html.erb'
   end
  

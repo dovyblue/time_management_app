@@ -48,7 +48,6 @@ class TaskToDosController < ApplicationController
 
   def destroy
     task_to_do = TaskToDo.find_by(id: params[:id])
-    tasks_to_do.destroy
-    redirect_to "/#{params[:date]}/task-to-dos/edit"
+    task_to_do.destroy
   end
 end
