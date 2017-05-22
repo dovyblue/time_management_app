@@ -5,7 +5,7 @@ class Day < ApplicationRecord
   validates :end_time, presence: true
 
   def add_drive_time
-    Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=273 skillman st.brooklyn11205&destinations=150broadwaynyc&mode=driving&key=AIzaSyDcAOXEQJSshoopEIArsAAtGR7VOKw9DXo").body
+    Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=273 skillman st.brooklyn11205&destinations=150broadwaynyc&mode=driving&key=#{ENV['API_KEY']}").body
   end
 
   def sorted_tasks
