@@ -35,7 +35,11 @@ class TaskToDosController < ApplicationController
       task_td.update(
         start_time: atr['start_time'],
         end_time: atr['end_time'],
-        importance: atr['importance']
+        importance: atr['importance'],
+        custom_duration: atr['custom_duration'],
+        departure: atr['departure'],
+        destination: atr['destination'],
+        drive_mode: atr['drive_mode']
       )
     end
     day = Day.find_by(date: params[:date], user_id: current_user.id)

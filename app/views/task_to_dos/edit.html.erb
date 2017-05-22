@@ -221,6 +221,11 @@
                           <div class="col-md-3">
                             <h3 class="title"><%= task.task.name %></h3>
                             <h4><%= task.task.length_time %> min.</h4>
+                            <h4>Form</h4>
+                            <%= ts.text_field :departure, :value => task.departure, :class => "form-control", :placeholder => "address" %>
+                            <h4>To</h4>
+                            <%= ts.text_field :destination, :value => task.destination, :class => "form-control", :placeholder => "address" %>
+                            <%= ts.select :drive_mode, ["", "driving", "walking", "bicycling", "transit"], :selected => task.drive_mode, :class => "form-control", :value => task.drive_mode%>
                           </div>
                           <div class="col-md-2">
                             <h4>Edit Duration</h4>

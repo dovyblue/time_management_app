@@ -4,6 +4,10 @@ class Day < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
 
+  def add_drive_time
+    Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=273 skillman st.brooklyn11205&destinations=150broadwaynyc&mode=driving&key=AIzaSyDcAOXEQJSshoopEIArsAAtGR7VOKw9DXo").body
+  end
+
   def sorted_tasks
     time_btw_tasks = user.user_preferences[0].time_between
     day_st = Time.parse(start_time)
