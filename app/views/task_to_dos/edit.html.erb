@@ -221,7 +221,7 @@
                           <div class="col-md-3">
                             <h3 class="title"><%= task.task.name %></h3>
                             <h4><%= task.task.length_time %> min.</h4>
-                            <h4>Form</h4>
+                            <h4>From</h4>
                             <%= ts.text_field :departure, :value => task.departure, :class => "form-control", :placeholder => "address" %>
                             <h4>To</h4>
                             <%= ts.text_field :destination, :value => task.destination, :class => "form-control", :placeholder => "address" %>
@@ -242,6 +242,8 @@
                               </label>
                             </div>
                             <%= ts.time_field :start_time, :value => task.start_time, :class => "form-control" %>
+                            <label>End time</label>
+                            <%= ts.time_field :end_time, :value => task.end_time, :class => "form-control" %>
                             
                           </div>
                           <div class="col-md-2">

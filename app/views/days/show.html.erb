@@ -183,7 +183,7 @@
         <!-- header end -->
       </div>
       <!-- header-container end -->
-<%= @day.add_drive_time %>
+
       <section class="light-gray-bg pv-30 padding-bottom-clear clearfix">
         <% str_time = Time.parse(@day.start_time) %>
         <% ed_time = Time.parse(@day.end_time) %>
@@ -203,8 +203,7 @@
           </div>
           <% if @task_to_dos.length >= 1%>
             <% if @day.sorted_tasks.class == String %>
-              <h2><%= @day.sorted_tasks %></h2>
-              <a href="#"><button class="btn btn-default">Edit</button></a>
+              <h1 class="text-center" style="color: red;"><%= @day.sorted_tasks %></h1>
             <% else %>
               <% @day.sorted_tasks.each do |task| %>
                 <div class="row">
@@ -213,22 +212,43 @@
                       <span class="icon without-bg"><i class="<%= task.task.icon %>" style="color: #09afdf;"></i></span>
                       <div class="body">
                         <div class="row">
-                          <div class="col-md-8">
-                            <h3 class="title"><%= task.task.name %></h3> 
-                            <% if task.start_time == "" %>
-                              <h4><%= str_time.strftime("%l:%M %P") %></h4>
-                              <% str_time += (task.task.length_time * 60) + (@time_btw * 60) %>
-                            <% else %>
-                              <% str_time = Time.parse(task.start_time) %>
-                              <h4><%= str_time.strftime("%l:%M %P") %></h4>
-                              <% str_time += (task.task.length_time * 60) + (@time_btw * 60) %>
-                              <%= "st" %>
-                            <% end %>
-                            
-                          </div>
+                          <% if task.going_time %>
+                            <div class="col-md-4">
+                              <h3 class="title"><%= task.task.name %></h3> 
+                              <% if task.start_time == "" %>
+                                <% leave_at = str_time.strftime("%l:%M %P") %>
+                                <% str_time += (task.going_time * 60) %>
+                                <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                                <% str_time += (task.custom_duration * 60) + (@time_btw * 60) + (task.going_time * 60)%>
+                              <% else %>
+                                <% str_time = Time.parse(task.start_time) %>
+                                <% leave_at = str_time - (task.going_time * 60) %>
+                                <% leave_at = leave_at.strftime("%l:%M %P") %>
+                                <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                                <% str_time += (task.custom_duration * 60) + (@time_btw * 60) + (task.going_time * 60)%>
+                              <% end %>
+                            </div>
+                            <div class="col-md-4">
+                              <h4 class="title">Leave at: <%= leave_at %></h4>
+                              <b>Travel time: </b><%= task.going_time %> min.<br>
+                              <b>Dest.</b> <%= task.destination %>
+                            </div>
+                          <% else %>
+                            <div class="col-md-8">
+                              <h3 class="title"><%= task.task.name %></h3> 
+                              <% if task.start_time == "" %>
+                                <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                                <% str_time += (task.custom_duration * 60) + (@time_btw * 60) %>
+                              <% else %>
+                                <% str_time = Time.parse(task.start_time) %>
+                                <h4><%= str_time.strftime("%l:%M %P") %></h4>
+                                <% str_time += (task.custom_duration * 60) + (@time_btw * 60) %>
+                              <% end %>
+                            </div>
+                          <% end %>
                           <div class="col-md-3">
                             Est. Duration
-                            <h4><%= task.task.length_time %> min.</h4>
+                            <h4><%= task.custom_duration %> min.</h4>
                           </div>
                           <div class="col-md-1">
                             <% if task.importance == "1" %>

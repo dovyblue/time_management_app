@@ -32,11 +32,16 @@ class TaskToDosController < ApplicationController
     tasks = params[:tasks]
     tasks.each do |task_id, atr|
       task_td = TaskToDo.find_by(id: task_id)
+      if atr['custom_duration'] == ""
+        task_custom_duration = task_td.task.length_time
+      else
+        task_custom_duration = atr['custom_duration']
+      end
       task_td.update(
         start_time: atr['start_time'],
         end_time: atr['end_time'],
         importance: atr['importance'],
-        custom_duration: atr['custom_duration'],
+        custom_duration: task_custom_duration,
         departure: atr['departure'],
         destination: atr['destination'],
         drive_mode: atr['drive_mode']

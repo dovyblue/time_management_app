@@ -130,14 +130,14 @@
                         <!-- main-menu -->
                         <ul class="nav navbar-nav ">
                           <li class="dropdown ">
-                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
                             <ul class="dropdown-menu">
-                              <li ><a href="#" v-on:click="sortStToLg()">sort shortest to longest</a></li>
+                              <li ><a href="#" v-on:click="sortStTo()">sort shortest to longest</a></li>
                               <li ><a href="#" >sort 2</a></li>
                             </ul>
                           </li>
                           <li class="dropdown ">
-                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
                             <ul class="dropdown-menu">
                               <li ><a href="/tasks">Tasks</a></li>
                               <li ><a href="/user-preferences">Preferences</a></li>
@@ -206,7 +206,7 @@
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <button type="button" class="close" data-dismiss="modal" v-on:click="removeInfo()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
               <h4 class="modal-title" id="mySmallModalLabel">New Task</h4>
             </div>
             <div class="modal-body">
@@ -226,7 +226,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal" v-on:click="removeInfo()">Close</button>
               <button v-on:click="addTask()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Save</button>
             </div>
           </div>
@@ -236,7 +236,7 @@
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <button type="button" class="close" data-dismiss="modal" v-on:click="removeInfo()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
               <h4 class="modal-title" id="mySmallModalLabel">Edit Task</h4>
             </div>
             <div class="modal-body">
@@ -265,27 +265,28 @@
       <div v-for="category in categories">
         <h2 class="text-center">{{ category.name}}</h2>
         <div class="separator with-icon"><i :class="category.icon"></i></div>
-        <!-- <div v-for="task in category.tasks">
+        <div v-for="task in sortStToLg">
           <p>{{task.name}}</p>
           <p>{{task.length_time}}</p>
-        </div> -->
-        <div v-for="(task, index) in category.tasks">
+        </div>
+
+        <!-- <div v-for="(task, index) in category.tasks">
           <div class="row" v-if="index % 6 === 0" >
             <div v-for="n in 6">
               <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
-                <div class="ph-20 feature-box text-center" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
+                <div class="ph-20 feature-box text-center">
                   <span v-if="dflt" class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
                   <span v-else class="icon dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
                   <h4>{{ category.tasks[(index + n) - 1].name }}</h4>
                   <div class="separator clearfix"></div>
                   <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
                   <a href="#" class="link-dark" data-toggle="modal" data-target=".bs-example-modal-sm-2" v-on:click="showInfo(category.tasks[(index + n) - 1])">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                  <!-- <p style="display: none;">{{ dflt = !dflt }}</p> -->
+                  <p style="display: none;">{{ dflt = !dflt }}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
       
