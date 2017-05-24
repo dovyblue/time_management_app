@@ -192,7 +192,6 @@
           <% date = Time.parse(@day.date).strftime("%A, %b %d") %>
           <h2 class="text-center" style="color: #09afdf;">- <%= date %> -</h2>
            <div class="separator"></div>
-           <!-- <br> -->
           <%= form_tag "/task-to-dos", method: :patch do %>
             <div class="row">
               <div class="col-md-6 col-md-offset-3">
@@ -238,12 +237,14 @@
                           <div class="col-md-3">
                             <div class="radio">
                               <label>
-                                <input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1" checked>Start By   
+                                <input type="radio" name="<%= task.id %>" value="start_time" checked>Start By 
+                              </label>
+                              <label>
+                                <input type="radio" name="<%= task.id %>" value="end_time">End by
                               </label>
                             </div>
-                            <%= ts.time_field :start_time, :value => task.start_time, :class => "form-control" %>
-                            <label>End time</label>
-                            <%= ts.time_field :end_time, :value => task.end_time, :class => "form-control" %>
+                            <input type="time" name="time_<%= task.id %>" class="form-control" value="<%= task.start_time %>">
+                            
                             
                           </div>
                           <div class="col-md-2">

@@ -132,7 +132,7 @@
                           <li class="dropdown ">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort</a>
                             <ul class="dropdown-menu">
-                              <li ><a href="#" v-on:click="sortStTo()">sort shortest to longest</a></li>
+                              <li ><a href="#" v-on:click="sortStTolg()">sort shortest to longest</a></li>
                               <li ><a href="#" >sort 2</a></li>
                             </ul>
                           </li>
@@ -265,12 +265,12 @@
       <div v-for="category in categories">
         <h2 class="text-center">{{ category.name}}</h2>
         <div class="separator with-icon"><i :class="category.icon"></i></div>
-        <div v-for="task in sortStToLg">
+        <!-- <div v-for="task in sortStToLg">
           <p>{{task.name}}</p>
           <p>{{task.length_time}}</p>
-        </div>
+        </div> -->
 
-        <!-- <div v-for="(task, index) in category.tasks">
+        <div v-for="(task, index) in category.tasks">
           <div class="row" v-if="index % 6 === 0" >
             <div v-for="n in 6">
               <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
@@ -281,12 +281,12 @@
                   <div class="separator clearfix"></div>
                   <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
                   <a href="#" class="link-dark" data-toggle="modal" data-target=".bs-example-modal-sm-2" v-on:click="showInfo(category.tasks[(index + n) - 1])">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                  <p style="display: none;">{{ dflt = !dflt }}</p>
+                  <!-- <p style="display: none;">{{ dflt = !dflt }}</p> -->
                 </div>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
       
