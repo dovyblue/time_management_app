@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>The Project | Page Sign Up</title>
+    <!-- <title>The Project | Sliders Text Rotator</title> -->
     <meta name="description" content="The Project a Bootstrap-based, Responsive HTML5 Template">
     <meta name="author" content="htmlcoder.me">
 
@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/images/favicon.ico">
+    
 
     <!-- Web Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
@@ -34,11 +34,17 @@
 
     <!-- Plugins -->
     <link href="/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/plugins/rs-plugin-5/css/settings.css" rel="stylesheet">
+    <link href="/plugins/rs-plugin-5/css/layers.css" rel="stylesheet">
+    <link href="/plugins/rs-plugin-5/css/navigation.css" rel="stylesheet">
     <link href="/css/animations.css" rel="stylesheet">
     <link href="/plugins/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="/plugins/owlcarousel2/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="/plugins/hover/hover-min.css" rel="stylesheet">    
-    
+    <link href="/plugins/morphext/morphext.css" rel="stylesheet">
+    <script type="text/javascript" src="/plugins/rs-plugin-5/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="/plugins/rs-plugin-5/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="/plugins/rs-plugin-5/js/extensions/revolution.extension.kenburn.min.js"></script>
     <!-- The Project's core CSS file -->
     <!-- Use css/rtl_style.css for RTL version -->
     <link href="/css/style.css" rel="stylesheet" >
@@ -61,8 +67,7 @@
   <!-- "transparent-header": makes the header transparent and pulls the banner to top -->
   <!-- "gradient-background-header": applies gradient background to header -->
   <!-- "page-loader-1 ... page-loader-6": add a page loader to the page (more info @components-page-loaders.html) -->
-  <body class="no-trans    ">
-    <div id="app">
+  <body class="no-trans  transparent-header  ">
 
     <!-- scrollToTop -->
     <!-- ================ -->
@@ -190,103 +195,81 @@
         <!-- header end -->
       </div>
       <!-- header-container end -->
-      <section class="pv-30 parallax light-translucent-bg slight padding-bottom-clear">
+    
       
-        <div class="container">
-          <button class="btn btn-info btn-lg" data-toggle="modal" data-target=".bs-example-modal-sm-1">Add Task</button>
-          <h1 class="text-center"><%= current_user.name %>'s Task List</h1>
-          <br>
-            <div class="modal fade bs-example-modal-sm-1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" v-on:click="removeInfo()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="mySmallModalLabel">New Task</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group has-success has-feedback">
-                      <label class="control-label" for="inputSuccess3">Task Name</label>
-                      <input v-model="taskName" type="text" class="form-control" id="input1">
-                    </div>
-                    <div class="form-group has-success has-feedback">
-                      <label class="control-label" for="inputSuccess3">Task Duration (in minutes)</label>
-                      <input v-model="taskDuration" type="text" class="form-control" id="input2">
-                    </div>
-                    <div class="form-group has-success has-feedback">
-                      <label class="control-label" for="inputSuccess3">Category</label>
-                      <select v-model="taskCategory" class="form-control" id="input3">
-                      <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal" v-on:click="removeInfo()">Close</button>
-                    <button v-on:click="addTask()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal fade bs-example-modal-sm-2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" v-on:click="removeInfo()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="mySmallModalLabel">Edit Task</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group has-success has-feedback">
-                      <label class="control-label" for="inputSuccess3">Task Name</label>
-                      <input v-model="taskName" type="text" class="form-control" id="inputSuccess1">
-                    </div>
-                    <div class="form-group has-success has-feedback">
-                      <label class="control-label" for="inputSuccess3">Task Duration (in minutes)</label>
-                      <input v-model="taskDuration" type="text" class="form-control" id="inputSuccess2">
-                    </div>
-                    <div class="form-group has-success has-feedback">
-                      <label class="control-label" for="inputSuccess3">Category</label>
-                      <select v-model="taskCategory" class="form-control" id="inputSuccess3">
-                        <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" v-on:click="deleteTask()">Delete</button>
-                    <button v-on:click="updateTask()" type="button" class="btn btn-sm btn-default" data-dismiss="modal">Save Changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div v-for="category in categories">
-              <h2 class="text-center">{{ category.name}}</h2>
-              <div class="separator with-icon"><i :class="category.icon"></i></div>
-              <!-- <div v-for="task in sortStToLg">
-                <p>{{task.name}}</p>
-                <p>{{task.length_time}}</p>
-              </div> -->
+      <div id="page-start"></div>
 
-              <div v-for="(task, index) in category.tasks">
-                <div class="row" v-if="index % 6 === 0" >
-                  <div v-for="n in 6">
-                    <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
-                      <div class="ph-20 feature-box text-center">
-                        <span v-if="dflt" class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
-                        <span v-else class="icon dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
-                        <h4>{{ category.tasks[(index + n) - 1].name }}</h4>
-                        <div class="separator clearfix"></div>
-                        <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
-                        <a href="#" class="link-dark" data-toggle="modal" data-target=".bs-example-modal-sm-2" v-on:click="showInfo(category.tasks[(index + n) - 1])">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                        <!-- <p style="display: none;">{{ dflt = !dflt }}</p> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <!-- section start -->
+      <!-- ================ -->
+      <section class="light-gray-bg pv-30 clearfix">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <h2 class="text-center">About <strong>Timely</strong></h2>
+              <div class="separator"></div>
+              <p class="large text-center">Timely is a time management app that tracks the duration of the user’s activities, thus enabling the user to accurately set up a daily schedule. Users can customize preprogrammed tasks, add new tasks, create an editable to-do list for a specific date and ultimately complete tasks sorted by importance or specific scheduled times in a timely fashion. 
             </div>
           </div>
+          <div class="row">
+            <!-- accordion start -->
+            <h2 class="text-center">App <strong>Guide</strong></h2>
+            <div class="separator"></div>
+            <div class="col-md-8 col-md-offset-2">
+              <div class="panel-group collapse-style-2" id="accordion-2">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-2">
+                        <i class="glyphicon glyphicon-pushpin pr-10"></i>Bootstrap Based
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne-2" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-2" class="collapsed">
+                        <i class="fa fa-leaf pr-10"></i>Clean &amp; powerful code
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseTwo-2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion-2" href="#collapseThree-2" class="collapsed">
+                        <i class="fa fa-html5 pr-10"></i>HTML5/CSS3
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseThree-2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- accordion end -->
+          </div>
         </div>
+        
+             
       </section>
-     <!-- footer top start -->
-      <footer id="footer" class="clearfix dark">
+      <!-- section end -->
+
+      
+     <footer id="footer" class="clearfix dark">
 
         <!-- .footer start -->
         <!-- ================ -->
@@ -316,8 +299,10 @@
           </div>
         </div>
         <!-- .footer end -->
+
       </footer>
-    <!-- footer end -->
+      <!-- footer end -->
+      
     </div>
     <!-- page-wrapper end -->
 
@@ -328,6 +313,10 @@
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <!-- Modernizr javascript -->
     <script type="text/javascript" src="/plugins/modernizr.js"></script>
+    <script type="text/javascript" src="/plugins/rs-plugin-5/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+    <script type="text/javascript" src="/plugins/rs-plugin-5/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+    <!-- Isotope javascript -->
+    <script type="text/javascript" src="/plugins/isotope/isotope.pkgd.min.js"></script>
     <!-- Magnific Popup javascript -->
     <script type="text/javascript" src="/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
     <!-- Appear javascript -->
@@ -338,6 +327,8 @@
     <script src="/plugins/jquery.parallax-1.1.3.js"></script>
     <!-- Contact form -->
     <script src="/plugins/jquery.validate.js"></script>
+    <!-- Morphext -->
+    <script type="text/javascript" src="/plugins/morphext/morphext.min.js"></script>
     <!-- Owl carousel javascript -->
     <script type="text/javascript" src="/plugins/owlcarousel2/owl.carousel.min.js"></script>
     <!-- SmoothScroll javascript -->
@@ -350,4 +341,3 @@
 
   </body>
 </html>
-

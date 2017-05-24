@@ -19,6 +19,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.categories = response;
       }.bind(this));
     },
+    computed: {
+      sortStToLg: function() {
+       
+        // // for (var i = 0; i < this.categories.length; i++) {
+        //   // console.log(this.categories[0].tasks.length);
+        //   return this.categories[0].tasks.sort(function(task1, task2) {
+        //     // console.log(task1.length_time);
+        //     // console.log(task2.length_time);
+        //     // console.log(task1.length_time > task2.length_time);
+        //     return task1.name.toLowerCase().localeCompare(task2.name.toLowerCase());
+        //     // return task1.length_time > task2.length_time;
+        //   });
+        // // }
+
+        // for (var i = 0; i < this.categories.length; i++) {
+          return this.categories[1].tasks.sort(function(task1, task2) {
+            if (task1.length_time > task2.length_time) {
+              return 1;
+            } else if (task2.length_time > task1.length_time) {
+              return -1;
+            } else {
+              return 0;
+            }
+          });
+        // }
+
+      }
+      
+    },
     methods: {
       addTask: function() {
         var params = {
@@ -36,11 +65,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.taskId = '';
       },
       showInfo: function(input) {
-        // console.log(input);
         this.taskName = input.name;
         this.taskDuration = input.length_time;
         this.taskCategory = input.category_id;
         this.taskId = input.id;
+      },
+      removeInfo: function() {
+        this.taskName = '';
+        this.taskDuration = '';
+        this.taskCategory = '';
+        this.taskId = '';
       },
       updateTask: function() {
         var params = {
@@ -64,17 +98,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.taskId = '';
       },
       addToList: function(inputTask, iconColor) {
-        // console.log(inputTask);
         if (iconColor.target.style.color === "red") {
           iconColor.target.style.color = "white";
           var index = this.tasksToDo.indexOf(inputTask.id);
-          // console.log(index);
           this.tasksToDo.splice(index, 1);
-          // console.log(this.tasksToDo);
         } else {
           iconColor.target.style.color = "red";
           this.tasksToDo.push(inputTask.id);
-          // console.log(this.tasksToDo);
         }
       },
       submitTasks: function() {
@@ -108,24 +138,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.taskCategory = '';
         this.taskId = '';
       },
-      sortStToLg: function() {
-        // for (var i = 0; i < this.categories.length; i++) {
-          console.log(this.categories[0].tasks.length);
-          return this.categories[0].tasks.sort(function(task1, task2) {
-            console.log(task1.length_time);
-            console.log(task2.length_time);
-            console.log(task1.length_time > task2.length_time);
-            return task1.length_time > task2.length_time;
-          });
-        // }
-      }
+      // sortStTolg: function() {
+      //   for (var i = 0; i < this.categories.length; i++) {
+      //     return this.categories[i].tasks.sort(function(task1, task2) {
+      //       if (task1.length_time > task2.length_time) {
+      //         return 1;
+      //       } else if (task2.length_time > task1.length_time) {
+      //         return -1;
+      //       } else {
+      //         return 0;
+      //       }
+      //     });
+      //   }
+      // }
     }
   });
 });
-
-
-// modifiedContacts: function() {
-//         return this.contacts.sort( function(contact1, contact2) {
-//           return contact1[this.sortAttr].toLowerCase().localeCompare(contact2[this.sortAttr].toLowerCase());
-//         }.bind(this));
-//       }

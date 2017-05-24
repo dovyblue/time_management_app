@@ -29,14 +29,37 @@ class TaskToDosController < ApplicationController
   end
 
   def update
-    tasks = params[:tasks]
-    tasks.each do |task_id, atr|
-      task_td = TaskToDo.find_by(id: task_id)
-      task_td.update(
-        start_time: atr['start_time'],
-        end_time: atr['end_time'],
-        importance: atr['importance']
-      )
+    if params[:tasks]
+      tasks = params[:tasks]
+      tasks.each do |task_id, atr|
+        task_td = TaskToDo.find_by(id: task_id)
+        if atr['custom_duration'] == ""
+          task_custom_duration = task_td.task.length_time
+        else
+          task_custom_duration = atr['custom_duration']
+        end
+        if params["#{task_td.id}"] == "start_time"
+          st = params["time_#{task_td.id}"]
+          task_td.update(
+            start_time: st,
+            importance: atr['importance'],
+            custom_duration: task_custom_duration,
+            departure: atr['departure'],
+            destination: atr['destination'],
+            drive_mode: atr['drive_mode']
+          )
+        else
+          et = params["time_#{task_td.id}"]
+          task_td.update(
+            end_time: et,
+            importance: atr['importance'],
+            custom_duration: task_custom_duration,
+            departure: atr['departure'],
+            destination: atr['destination'],
+            drive_mode: atr['drive_mode']
+          )
+        end
+      end
     end
     day = Day.find_by(date: params[:date], user_id: current_user.id)
     day.update(

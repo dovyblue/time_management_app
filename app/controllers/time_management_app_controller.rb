@@ -2,6 +2,9 @@ class TimeManagementAppController < ApplicationController
   
   def about
   end
+
+  def about2
+  end
   
   def todays_tasks 
     @time_btw = current_user.user_preferences[0].time_between
