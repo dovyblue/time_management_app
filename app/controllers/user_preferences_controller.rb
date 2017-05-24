@@ -281,18 +281,11 @@ class UserPreferencesController < ApplicationController
         category_id: personal.id
       )
       task.save
-      # Go To Work                          ????????????????????????
-      if user_preference.speed == "fast"
-        lt = 10
-      elsif user_preference.speed == "regular"
-        lt = 14
-      else
-        lt = 18
-      end
+      # Work      
       task = Task.new(
-        name: "Go To Work", 
+        name: "Work", 
         icon: "fa fa-briefcase",
-        length_time: lt,
+        length_time: 480,
         user_id: current_user.id,
         category_id: personal.id
       )

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get '/' => 'time_management_app#about'
+  get '/about' => 'time_management_app#about2'
   get '/todays-tasks' => 'time_management_app#todays_tasks'
   patch '/todays-tasks/tasks' => 'time_management_app#update_task_duration'
 

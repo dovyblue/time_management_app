@@ -64,18 +64,18 @@
     <script src="/js/modernizr.custom.63321.js"></script>
   </head>
   <body>
-    <!-- header-container start -->
+      <!-- header-container start -->
       <div class="header-container">
         <header class="header  fixed   dark clearfix">
           <div class="container">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-4">
                 <!-- header-first start -->
                 <!-- ================ -->
                 <div class="header-first clearfix">
                   <!-- logo -->
                   <div id="logo" class="logo">
-                    <a href="/todays-tasks"><img id="logo_img" src="/images/logo_light_blue.png" alt="The Project"></a>
+                    <a href="/todays-tasks"><img id="logo_img" src="/images/timely_logo.png" alt="The Project"></a>
                   </div>
 
                   <!-- name-and-slogan -->
@@ -87,7 +87,7 @@
                 <!-- header-first end -->
 
               </div>
-              <div class="col-md-7">
+              <div class="col-md-8">
           
                 <!-- header-second start -->
                 <!-- ================ -->
@@ -120,13 +120,23 @@
                       <!-- Collect the nav links, forms, and other content for toggling -->
                       <div class="collapse navbar-collapse" id="navbar-collapse-1">
                         <!-- main-menu -->
+
                         <ul class="nav navbar-nav ">
                           <li class="dropdown ">
-                            <a href="index-shop.html" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
                             <ul class="dropdown-menu">
                               <li ><a href="/tasks">Tasks</a></li>
-                              <li ><a href="index-shop-2.html">Preferences</a></li>
+                              <li ><a href="/user-preferences">Preferences</a></li>
                             </ul>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/todays-tasks">Today's schedule</a>    
+                                </li>
+                              </ul>
+                            </nav>
                           </li>
                           <li>
                             <nav class="navbar navbar-default" role="navigation">
@@ -150,11 +160,7 @@
                             <nav class="navbar navbar-default" role="navigation">
                               <ul class="nav navbar-nav ">
                                 <li>
-                                  <% if current_user %>
-                                    <a href="/logout">Logout</a> 
-                                  <% else %>   
-                                    <a href="/login">Login</a>
-                                  <% end %>
+                                  <a href="/logout">Logout</a> 
                                 </li>
                               </ul>
                             </nav>
@@ -201,35 +207,33 @@
     <footer id="footer" class="clearfix dark">
 
       <!-- .footer start -->
-      <!-- ================ -->
-      <div class="footer">
-        <div class="container">
-          <div class="footer-inner">
-            <div class="row">
-              <div class="col-md-6 col-md-offset-3">
-                <div class="footer-content text-center padding-ver-clear">
-                  <div class="logo-footer"><img id="logo-footer" class="center-block" src="/images/logo_light_blue.png" alt=""></div>
-                  <p>Timely is a time management app that tracks the duration of the user’s activities, thus enabling the user to accurately set up his daily schedule. Users can customize preprogrammed tasks, add new tasks, create an editable to-do list for a specific date and ultimately complete tasks sorted by importance or specific scheduled times in a timely fashion.</p>
-                  <ul class="list-inline mb-20">
-                    <li><i class="text-default fa fa-map-marker pr-5"></i>One infinity loop, 54100</li>
-                    <li><a href="tel:+00 1234567890" class="link-dark"><i class="text-default fa fa-phone pl-10 pr-5"></i>+00 1234567890</a></li>
-                    <li><a href="mailto:info@theproject.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>info@theproject.com</a></li>
-                  </ul>
-                  <ul class="social-links circle animated-effect-1 margin-clear">
-                    <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-                    <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-                    <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
-                  </ul>
-                  <div class="separator"></div>
-                  <p class="text-center margin-clear">Copyright © 2017 The Project by <a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/">Dov Bluming </a>. All Rights Reserved</p>
+          <!-- ================ -->
+          <div class="footer">
+            <div class="container">
+              <div class="footer-inner">
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                    <div class="footer-content text-center padding-ver-clear">
+                      <div class="logo-footer"><img id="logo-footer" class="center-block" src="/images/timely_logo.png" alt=""></div>
+                      <p>Timely is a time management app that tracks the duration of the user’s activities, thus enabling the user to accurately set up a daily schedule. <br>Users can customize preprogrammed tasks, add new tasks, create an editable to-do list for a specific date and ultimately complete tasks sorted by importance or specific scheduled times in a timely fashion.</p>
+                      <ul class="list-inline mb-20">
+                        <li><a href="mailto:dovybluming@gmail.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>dovybluming@gmail.com</a></li>
+                      </ul>
+                      <ul class="social-links circle animated-effect-1 margin-clear">
+                        <li class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/"><i class="fa fa-linkedin"></i></a></li>
+                        <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                        <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                        <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                      </ul>
+                      <div class="separator"></div>
+                      <p class="text-center margin-clear">Copyright © 2017 Timely by <a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/">Dov Bluming </a>. All Rights Reserved</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          <!-- .footer end -->
     </footer>
     <%= form_tag "/days", :style => "display: hidden", :id => "form", method: :post do  %>
       <input type="hidden" id="day" name="date">

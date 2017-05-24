@@ -11,7 +11,9 @@ class Day < ApplicationRecord
         dprt = task.departure
         dest = task.destination
         d_mode = task.drive_mode
-        going = Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{dprt}&destinations=#{dest}&mode=#{d_mode}&key=#{ENV['API_KEY']}").body
+        going = Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{dprt}&destinations=#{dest}&mode=#{d_mode}&key=#{ENV['API_KEY']}").body 
+        p "*" * 50
+        p going
         duration_text = going['rows'][0]['elements'][0]['duration']['text'].split
         going_time = 0
         if duration_text.length == 4
@@ -25,12 +27,11 @@ class Day < ApplicationRecord
         # coming = Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{dest}&destinations=#{dprt}&mode=#{d_mode}&key=#{ENV['API_KEY']}").body
         # p coming
       end
-    end
-    
-    
+    end 
   end
 
   def sorted_tasks
+    add_drive_time
     # -----------------
     time_btw_tasks = user.user_preferences[0].time_between
     day_st = Time.parse(start_time)
@@ -60,10 +61,10 @@ class Day < ApplicationRecord
       task_with_et = []
       task_without_st = []
       task_to_dos.each do |task|
-        if task.start_time && task.start_time != ""
-          task_with_st << task
-        elsif task.end_time && task.end_time != ""
+        if task.end_time && task.end_time != ""
           task_with_et << task
+        elsif task.start_time && task.start_time != ""
+          task_with_st << task
         else
           task_without_st << task
         end
