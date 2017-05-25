@@ -12,8 +12,6 @@ class Day < ApplicationRecord
         dest = task.destination
         d_mode = task.drive_mode
         going = Unirest.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=#{dprt}&destinations=#{dest}&mode=#{d_mode}&key=#{ENV['API_KEY']}").body 
-        p "*" * 50
-        p going
         duration_text = going['rows'][0]['elements'][0]['duration']['text'].split
         going_time = 0
         if duration_text.length == 4
@@ -78,6 +76,7 @@ class Day < ApplicationRecord
         task_with_st << task_td 
       end
       task_with_st.sort_by! { |task| task.start_time }
+      task_without_st.sort_by! { |task| task.task.name }
       # -----------------
       error = false
       count = 1
