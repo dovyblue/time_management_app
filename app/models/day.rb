@@ -52,7 +52,7 @@ class Day < ApplicationRecord
     min = day_time % 60
     day_time = hrs_min + min
     if total_time > day_time
-      return "message"
+      return "Insufficient time to complete all tasks"
     # -----------------
     else
       task_to_dos = TaskToDo.where(day_id: id).order(:importance)
@@ -107,7 +107,7 @@ class Day < ApplicationRecord
         count += 1
       end
       if error
-        return "message 2"
+        return "A start/end time you entered overlaps with another task"
       # -----------------
       else
         task_with_st.each do |task|

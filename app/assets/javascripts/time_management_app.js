@@ -64,7 +64,7 @@ function hideTask(input) {
   title.classList.add('complete');
 }
 function showAll() {
-  var hidden = document.querySelectorAll('.complete');
+  var hidden = document.querySelectorAll('.hidden');
   for (var i = 0; i < hidden.length; i++) {
     hidden[i].classList.remove('hidden');
   }

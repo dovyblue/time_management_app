@@ -24,9 +24,14 @@ class TimeManagementAppController < ApplicationController
   end
 
   def update_task_duration
-    task = Task.find_by(name: params[:name], user_id: current_user.id)
+    task_td = TaskToDo.find_by(id: params[:id])
+    task = Task.find_by(name: task_td.task.name, user_id: current_user.id)
     timed_duration = params[:duration].to_i
-    duration = (task.length_time + timed_duration) / 2
+    p "*" * 50
+    p task
+    p task.length_time
+    p duration = (task.length_time + timed_duration) / 2
+    task_td.update(custom_duration: duration)
     task.update(length_time: duration)
     redirect_to "/todays-tasks"
   end

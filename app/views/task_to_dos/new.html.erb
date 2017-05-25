@@ -207,12 +207,12 @@
                     <div v-if="category.tasks[(index + n) - 1]" class="col-md-1">
                       <div class="ph-20 feature-box text-center" data-animation-effect="fadeInDownSmall" data-effect-delay="50">
                         <span v-if="dflt" class="icon small default-bg circle"><i v-on:click="addToList(category.tasks[(index + n) - 1], $event)" :class="category.tasks[(index + n) - 1].icon"></i></span>
-                        <!-- <span v-else class="icon small dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span> -->
+                        <span v-else class="icon small dark-bg circle"><i v-on:click="addToList(category.tasks[(index + n) - 1], $event)" :class="category.tasks[(index + n) - 1].icon"></i></span>
                         <h6>{{ category.tasks[(index + n) - 1].name }}</h6>
                         
                         <p>:{{ category.tasks[(index + n) - 1].length_time }}</p>
                         
-                        <!-- <p style="display: none;">{{ dflt = !dflt }}</p> -->
+                        <p style="display: none;">{{ dflt = !dflt }}</p>
                       </div>
                     </div>
                   </div>

@@ -199,58 +199,34 @@
           <div class="separator"></div>
           <br>
           <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-md-offset-4">
               <div class="pv-20 ph-20 feature-box-2 boxed shadow object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
                 <div class="body">
                   <h3 class="title">Start day <%= str_time.strftime("%l:%M %p") %></h3>
                 </div>
               </div>
             </div>
-            <% if @task_to_dos.length >= 1%>
-            <div class="col-md-1"></div>
-            <div class="col-md-2">
-              <div class="app-stopwach-main">
-                <h1><clock>00:00:00</clock></h1>
-                <p><a href="#" class="btn btn-success btn-sm start">start</a>
-                <a href="#" class="btn btn-danger btn-sm stop" style="display: none;">stop</a>
-                <a href="#" class="btn btn-warning btn-sm reset">reset</a></p>
-             
-                <%= form_tag "/todays-tasks/tasks", method: :patch  do %>
-                  <select name="name" class="form-control">
-                    <% @day.sorted_tasks.each do |task| %>
-                      <option><%= task.task.name %></option>
-                    <% end %>
-                  </select>
-                  <input type="hidden" name="duration" id="hidden_timer">
-                  <button type="submit" class="btn btn-default btn-sm">Save</button>
-                <%end %>
-              </div>
-            </div>
-            <div class="col-md-1"></div>
-            <% else %>
-            <div class="col-md-4"></div>
-            <% end %>
           </div>
           <% if @task_to_dos.length >= 1%>
             <% if @day.sorted_tasks.class == String %>
-              <h1 class="text-center" style="color: red;"><%= @day.sorted_tasks %></h1>
+              <h2 class="text-center" style="color: red;">Error:</h2>
+              <h3 class="text-center" style="color: red;"><%= @day.sorted_tasks %></h3>
             <% else %>
               <div class="row">
                 <div class="col-md-2 col-md-offset-5">
                   <div class="app-stopwach-main">
                     <h1><clock>00:00:00</clock></h1>
-                    <p><a href="#" class="btn btn-success btn-sm start">start</a>
-                    <a href="#" class="btn btn-danger btn-sm stop" style="display: none;">stop</a>
+                    <p><button class="btn btn-success btn-sm start">start</button>
+                    <button class="btn btn-danger btn-sm stop" style="display: none;">stop</button>
                     <a href="#" class="btn btn-warning btn-sm reset">reset</a></p>
-                 
                     <%= form_tag "/todays-tasks/tasks", method: :patch  do %>
-                      <select name="name" class="form-control">
+                      <select name="id" class="form-control">
                         <% @day.sorted_tasks.each do |task| %>
-                          <option><%= task.task.name %></option>
+                          <option value="<%= task.id %>"><%= task.task.name %></option>
                         <% end %>
                       </select>
                       <input type="hidden" name="duration" id="hidden_timer">
+                      <!-- <input type="hidden" name="task_td_id" value=""> -->
                       <button type="submit" class="btn btn-default btn-sm">Save</button>
                     <%end %>
                   </div>
