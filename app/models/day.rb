@@ -76,7 +76,7 @@ class Day < ApplicationRecord
         task_with_st << task_td 
       end
       task_with_st.sort_by! { |task| task.start_time }
-      task_without_st.sort_by! { |task| task.task.name }
+      task_without_st.sort_by! { |task| [task.importance, task.task.name] }
       # -----------------
       error = false
       count = 1
