@@ -4,7 +4,7 @@ $(document).ready(function() {
   var stop = $('.stop');
   var reset = $('.reset');
   var hiddenTimer = $('#hidden_timer');
-  var mil = 0, sec = 0, min = 0, hrs = 0, t;
+  var mil = 0, sec = 0, min = 0, t;
 
   function add() {
     mil++;
@@ -14,20 +14,15 @@ $(document).ready(function() {
       if (sec >= 60) {
         sec = 0;
         min++;
-        if (min >= 60) {
-          min = 0;
-          hrs++;
-        }
       }
     }
     function makeTimerString() {
-      return (hrs ? (hrs > 9 ? hrs : "0" + hrs) : "00") + ":" + (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec ? (sec > 9 ? sec : "0" + sec) : "00");
+      return (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec ? (sec > 9 ? sec : "0" + sec) : "00");
     }
     function hiddenTimerString() {
       return (min ? (min > 9 ? min : "0" + min) : "00");
     }
     clock.html(makeTimerString);
-    // hiddenTimer.value(makeTimerString);
     hiddenTimer[0].value = hiddenTimerString();
     clockStart();
   }
@@ -39,11 +34,10 @@ $(document).ready(function() {
   }
 
   function resetClock() {
-    clock.html("00:00:00");
+    clock.html("00:00");
     mil = 0;
     sec = 0;
     min = 0;
-    hrs = 0;
   }
 
   function stopClock() {
@@ -57,6 +51,8 @@ $(document).ready(function() {
   reset.click(resetClock);
 
 });
+
+
 function hideTask(input) {
   var wholeDiv = input.parentElement.parentElement.parentElement.parentElement.parentElement;
   wholeDiv.classList.add('hidden');

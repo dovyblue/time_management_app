@@ -215,7 +215,7 @@
               <div class="row">
                 <div class="col-md-2 col-md-offset-5">
                   <div class="app-stopwach-main">
-                    <h1><clock>00:00:00</clock></h1>
+                    <h1><clock>00:00</clock></h1>
                     <p><button class="btn btn-success btn-sm start">start</button>
                     <button class="btn btn-danger btn-sm stop" style="display: none;">stop</button>
                     <a href="#" class="btn btn-warning btn-sm reset">reset</a></p>
@@ -225,8 +225,7 @@
                           <option value="<%= task.id %>"><%= task.task.name %></option>
                         <% end %>
                       </select>
-                      <input type="hidden" name="duration" id="hidden_timer">
-                      <!-- <input type="hidden" name="task_td_id" value=""> -->
+                      <input type="hidden" name="duration" id="hidden_timer" value="00">
                       <button type="submit" class="btn btn-default btn-sm">Save</button>
                     <%end %>
                   </div>

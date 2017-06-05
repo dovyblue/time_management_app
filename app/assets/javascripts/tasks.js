@@ -122,6 +122,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
           }
         });
         request.done(location = "/" + date + "/task-to-dos/edit");
+        // request.done(function() {
+        //   location = "/" + date + "/task-to-dos/edit";
+        // });
        
       },
       deleteTask: function() {
@@ -138,6 +141,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.taskCategory = '';
         this.taskId = '';
       },
+      changeDflt: function() {
+        this.dflt = !this.dflt;
+      }
       // sortStTolg: function() {
       //   for (var i = 0; i < this.categories.length; i++) {
       //     return this.categories[i].tasks.sort(function(task1, task2) {
