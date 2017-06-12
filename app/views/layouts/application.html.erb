@@ -2,25 +2,357 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if gt IE 9]> <html lang="en" class="ie"> <![endif]-->
 <!--[if !IE]><!-->
-<html>
+<html dir="ltr" lang="en">
   <!--<![endif]-->
   <title>Timely</title>
-  <head>
-    <link rel="shortcut icon" href="/images/favicon_t.ico">
-    <%= csrf_meta_tags %>
+  <% if !current_page?(controller: "days", action: "index") %>
+    <head>
+      <link rel="shortcut icon" href="/images/favicon_t.ico">
+      <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <meta charset="utf-8">
+      <!-- <title>The Project | Sliders Text Rotator</title> -->
+      <meta name="description" content="The Project a Bootstrap-based, Responsive HTML5 Template">
+      <meta name="author" content="htmlcoder.me">
 
-  <body>
-    
-    <%= yield %>
-    <% if current_user %>
-      <%= javascript_tag do %> 
-        window.id = <%= current_user.id %>;
+      <!-- Mobile Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!-- Favicon -->
+      
+
+      <!-- Web Fonts -->
+      <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+
+      <!-- Bootstrap core CSS -->
+      <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+      <!-- Font Awesome CSS -->
+      <link href="/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+      <!-- Fontello CSS -->
+      <link href="/fonts/fontello/css/fontello.css" rel="stylesheet">
+
+      <!-- Plugins -->
+      <link href="/plugins/magnific-popup/magnific-popup.css" rel="stylesheet">
+      <link href="/plugins/rs-plugin-5/css/settings.css" rel="stylesheet">
+      <link href="/plugins/rs-plugin-5/css/layers.css" rel="stylesheet">
+      <link href="/plugins/rs-plugin-5/css/navigation.css" rel="stylesheet">
+      <link href="/css/animations.css" rel="stylesheet">
+      <link href="/plugins/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet">
+      <link href="/plugins/owlcarousel2/assets/owl.theme.default.min.css" rel="stylesheet">
+      <link href="/plugins/hover/hover-min.css" rel="stylesheet">    
+      <link href="/plugins/morphext/morphext.css" rel="stylesheet">
+      <script type="text/javascript" src="/plugins/rs-plugin-5/js/extensions/revolution.extension.slideanims.min.js"></script>
+      <script type="text/javascript" src="/plugins/rs-plugin-5/js/extensions/revolution.extension.layeranimation.min.js"></script>
+      <script type="text/javascript" src="/plugins/rs-plugin-5/js/extensions/revolution.extension.kenburn.min.js"></script>
+      <!-- The Project's core CSS file -->
+      <!-- Use css/rtl_style.css for RTL version -->
+      <link href="/css/style.css" rel="stylesheet" >
+      <!-- The Project's Typography CSS file, includes used fonts -->
+      <!-- Used font for body: Roboto -->
+      <!-- Used font for headings: Raleway -->
+      <!-- Use css/rtl_typography-default.css for RTL version -->
+      <link href="/css/typography-default.css" rel="stylesheet" >
+      <!-- Color Scheme (In order to change the color scheme, replace the blue.css with the color scheme that you prefer)-->
+      <link href="/css/skins/light_blue.css" rel="stylesheet">
+      <!-- Custom css --> 
+      <link href="/css/custom.css" rel="stylesheet">
+    </head>
+  <% end %>
+  <body class="no-trans  transparent-header">
+    <div class="scrollToTop circle"><i class="icon-up-open-big"></i></div>
+    <div class="page-wrapper">
+    <% if current_page?(controller: "sessions", action: "new") ||  current_page?(controller: "users", action: "new") || current_page?(controller: "time_management_app", action: "about") || current_page?(controller: "user_preferences", action: "new") %>
+      <!-- header-container start -->
+      <div class="header-container">
+        <header class="header  fixed   dark clearfix">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8">
+                <!-- header-first start -->
+                <!-- ================ -->
+                <div class="header-first clearfix">
+                  <!-- logo -->
+                  <div id="logo" class="logo">
+                    <a href="index.html"><%= image_tag ("timely_logo.png") %></a>
+
+                  </div>
+
+                  <!-- name-and-slogan -->
+                  <div class="site-slogan">
+                    Your Time Management App
+                  </div>
+
+                </div>
+                <!-- header-first end -->
+
+              </div>
+              <div class="col-md-4">
+          
+                <!-- header-second start -->
+                <!-- ================ -->
+                <div class="header-second clearfix">
+                  
+                <!-- main-navigation start -->
+                <!-- classes: -->
+                <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
+                <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
+                <!-- "with-dropdown-buttons": Mandatory class that adds extra space, to the main navigation, for the search and cart dropdowns -->
+                <!-- ================ -->
+                <div class="main-navigation  animated with-dropdown-buttons">
+
+                  <!-- navbar start -->
+                  <!-- ================ -->
+                  <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+
+                      <!-- Toggle get grouped for better mobile display -->
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        
+                      </div>
+
+                      <!-- Collect the nav links, forms, and other content for toggling -->
+                      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                        <!-- main-menu -->
+                        <ul class="nav navbar-nav ">
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/">About</a>    
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <% if current_user %>
+                                    <a href="/logout">Logout</a> 
+                                  <% else %>   
+                                    <a href="/login">Login</a>
+                                  <% end %>
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                        </ul>
+                        <!-- main-menu end -->
+                      </div>
+                    </div>
+                  </nav>
+                  <!-- navbar end -->
+                </div>
+                <!-- main-navigation end -->
+              </div>
+                <!-- header-second end -->
+          
+            </div>
+          </div>
+        </header>
+        <!-- header end -->
+      </div>
+      <!-- header-container end -->
+    <% else %>
+      <!-- header-container start -->
+      <div class="header-container">
+        <header class="header  fixed   dark clearfix">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <!-- header-first start -->
+                <!-- ================ -->
+                <div class="header-first clearfix">
+                  <!-- logo -->
+                  <div id="logo" class="logo">
+                    <a href="/todays-tasks"><img id="logo_img" src="/images/timely_logo.png" alt="The Project"></a>
+                  </div>
+
+                  <!-- name-and-slogan -->
+                  <div class="site-slogan">
+                    Your Time Management App
+                  </div>
+
+                </div>
+                <!-- header-first end -->
+
+              </div>
+              <div class="col-md-8">
+          
+                <!-- header-second start -->
+                <!-- ================ -->
+                <div class="header-second clearfix">
+                  
+                <!-- main-navigation start -->
+                <!-- classes: -->
+                <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
+                <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
+                <!-- "with-dropdown-buttons": Mandatory class that adds extra space, to the main navigation, for the search and cart dropdowns -->
+                <!-- ================ -->
+                <div class="main-navigation  animated with-dropdown-buttons">
+
+                  <!-- navbar start -->
+                  <!-- ================ -->
+                  <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+
+                      <!-- Toggle get grouped for better mobile display -->
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                        
+                      </div>
+
+                      <!-- Collect the nav links, forms, and other content for toggling -->
+                      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                        <!-- main-menu -->
+
+                        <ul class="nav navbar-nav ">
+                          <li class="dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
+                            <ul class="dropdown-menu">
+                              <li ><a href="/tasks">Tasks</a></li>
+                              <li ><a href="/user-preferences">Preferences</a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/todays-tasks">Today's schedule</a>    
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/days">Calendar</a>    
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/about">About</a>    
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                          <li>
+                            <nav class="navbar navbar-default" role="navigation">
+                              <ul class="nav navbar-nav ">
+                                <li>
+                                  <a href="/logout">Logout</a> 
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                        </ul>
+                        <!-- main-menu end -->
+                      </div>
+                    </div>
+                  </nav>
+                  <!-- navbar end -->
+                </div>
+                <!-- main-navigation end -->
+              </div>
+                <!-- header-second end -->
+          
+            </div>
+          </div>
+        </header>
+        <!-- header end -->
+      </div>
+      <!-- header-container end -->
+    <% end %>
+      <%= yield %>
+      <% if current_user %>
+        <%= javascript_tag do %> 
+          window.id = <%= current_user.id %>;
+        <% end %>
       <% end %>
+      <footer id="footer" class="clearfix dark">
+        <div class="footer">
+          <div class="container">
+            <div class="footer-inner">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="footer-content text-center padding-ver-clear">
+                    <div class="logo-footer"><img id="logo-footer" class="center-block" src="/images/timely_logo.png" alt=""></div>
+                    <p>Timely is a time management app that tracks the duration of the user’s activities, thus enabling the user to accurately set up a daily schedule. <br>Users can customize preprogrammed tasks, add new tasks, create an editable to-do list for a specific date and ultimately complete tasks sorted by importance or specific scheduled times in a timely fashion.</p>
+                    <ul class="list-inline mb-20">
+                      <li><a href="mailto:dovybluming@gmail.com" class="link-dark"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>dovybluming@gmail.com</a></li>
+                    </ul>
+                    <ul class="social-links circle animated-effect-1 margin-clear">
+                      <li class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/"><i class="fa fa-linkedin"></i></a></li>
+                      <li class="facebook"><a target="_blank" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+                      <li class="twitter"><a target="_blank" href="https://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                      <li class="googleplus"><a target="_blank" href="https://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                    <div class="separator"></div>
+                    <p class="text-center margin-clear">Copyright © 2017 Timely by <a target="_blank" href="https://www.linkedin.com/in/dov-bluming-270ba8140/">Dov Bluming </a>. All Rights Reserved</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- JavaScript files placed at the end of the document so the pages load faster -->
+    <!-- ================================================== -->
+    <!-- Jquery and Bootstap core js files -->
+    <% if !current_page?(controller: "days", action: "index") %>
+      <script type="text/javascript" src="/plugins/jquery.min.js"></script>
+      <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+      <!-- Modernizr javascript -->
+      <script type="text/javascript" src="/plugins/modernizr.js"></script>
+      <script type="text/javascript" src="/plugins/rs-plugin-5/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+      <script type="text/javascript" src="/plugins/rs-plugin-5/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+      <!-- Isotope javascript -->
+      <script type="text/javascript" src="/plugins/isotope/isotope.pkgd.min.js"></script>
+      <!-- Magnific Popup javascript -->
+      <script type="text/javascript" src="/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+      <!-- Appear javascript -->
+      <script type="text/javascript" src="/plugins/waypoints/jquery.waypoints.min.js"></script>
+      <!-- Count To javascript -->
+      <script type="text/javascript" src="/plugins/jquery.countTo.js"></script>
+      <!-- Parallax javascript -->
+      <script src="/plugins/jquery.parallax-1.1.3.js"></script>
+      <!-- Contact form -->
+      <script src="/plugins/jquery.validate.js"></script>
+      <!-- Morphext -->
+      <script type="text/javascript" src="/plugins/morphext/morphext.min.js"></script>
+      <!-- Owl carousel javascript -->
+      <script type="text/javascript" src="/plugins/owlcarousel2/owl.carousel.min.js"></script>
+      <!-- SmoothScroll javascript -->
+      <script type="text/javascript" src="/plugins/jquery.browser.js"></script>
+      <script type="text/javascript" src="/plugins/SmoothScroll.js"></script>
+      <!-- Initialization of Plugins -->
+      <script type="text/javascript" src="/js/template.js"></script>
+      <!-- Custom Scripts -->
+      <script type="text/javascript" src="/js/custom.js"></script>
     <% end %>
   </body>
 
