@@ -71,7 +71,7 @@
                     <% else %>
                       <div class="col-md-8">
                         <h3 class="title"><%= task.task.name %></h3> 
-                        <% if task.start_time == "" %>
+                        <% if task.start_time == "" || task.start_time == nil %>
                           <h4><%= str_time.strftime("%l:%M %P") %></h4>
                           <% str_time += (task.custom_duration * 60) + (@time_btw * 60) %>
                         <% else %>
