@@ -3,7 +3,7 @@ class DaysController < ApplicationController
   def index
     render 'index.html.erb'
   end
-
+ 
   def create
     date = Date.parse(params[:date])
     day = Day.find_by(date: date, user_id: current_user.id)

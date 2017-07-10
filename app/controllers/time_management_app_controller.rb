@@ -8,7 +8,8 @@ class TimeManagementAppController < ApplicationController
   
   def todays_tasks 
     @time_btw = current_user.user_preferences[0].time_between
-    @date = Date.today
+    p '*' * 50
+    p @date = Date.today
     @day = Day.find_by(date: @date.to_s, user_id: current_user.id)
     unless @day 
       @day = Day.new(

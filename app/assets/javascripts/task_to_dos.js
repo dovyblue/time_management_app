@@ -1,5 +1,4 @@
 function deleteTaskToDo(taskId) {
-  console.log("works!");
   var date = window.location.pathname.split("").splice(1, 10).join("");
   var request = $.ajax({
     method: "DELETE",

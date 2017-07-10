@@ -119,12 +119,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
           data: {
             tasks: this.tasksToDo,
             date: date
-          }
+          },
         });
-        request.done(location = "/" + date + "/task-to-dos/edit");
-        // request.done(function() {
-        //   location = "/" + date + "/task-to-dos/edit";
-        // });
+        
+        request.done(window.location.assign("/" + date + "/task-to-dos/edit"));
        
       },
       deleteTask: function() {
