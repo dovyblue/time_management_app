@@ -78,13 +78,12 @@
               <div v-for="n in 6">
                 <div v-if="category.tasks[(index + n) - 1]" class="col-md-2">
                   <div class="ph-20 feature-box text-center">
-                    <span v-if="dflt" class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
-                    <span v-else class="icon dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
+                    <span v-if="n % 2 === 0" class="icon dark-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
+                    <span v-else class="icon default-bg circle"><i :class="category.tasks[(index + n) - 1].icon"></i></span>
                     <h4>{{ category.tasks[(index + n) - 1].name }}</h4>
                     <div class="separator clearfix"></div>
                     <p>{{ category.tasks[(index + n) - 1].length_time }} min.</p>
                     <a href="#" class="link-dark" data-toggle="modal" data-target=".bs-example-modal-sm-2" v-on:click="showInfo(category.tasks[(index + n) - 1])">Edit<i class="pl-5 fa fa-angle-double-right"></i></a>
-                    {{ changeDflt()}}
                   </div>
                 </div>
               </div>
