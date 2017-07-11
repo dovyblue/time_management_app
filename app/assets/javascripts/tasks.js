@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       taskDuration: '',
       taskCategory: '',
       taskId: '',
-      dflt: true,
       tasksToDo: [],
       date: ''
     },
@@ -18,35 +17,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $.get("/api/v1/tasks",parameters, function(response) {
         this.categories = response;
       }.bind(this));
-    },
-    computed: {
-      sortStToLg: function() {
-       
-        // // for (var i = 0; i < this.categories.length; i++) {
-        //   // console.log(this.categories[0].tasks.length);
-        //   return this.categories[0].tasks.sort(function(task1, task2) {
-        //     // console.log(task1.length_time);
-        //     // console.log(task2.length_time);
-        //     // console.log(task1.length_time > task2.length_time);
-        //     return task1.name.toLowerCase().localeCompare(task2.name.toLowerCase());
-        //     // return task1.length_time > task2.length_time;
-        //   });
-        // // }
-
-        // for (var i = 0; i < this.categories.length; i++) {
-          return this.categories[1].tasks.sort(function(task1, task2) {
-            if (task1.length_time > task2.length_time) {
-              return 1;
-            } else if (task2.length_time > task1.length_time) {
-              return -1;
-            } else {
-              return 0;
-            }
-          });
-        // }
-
-      }
-      
     },
     methods: {
       addTask: function() {
@@ -138,23 +108,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.taskDuration = '';
         this.taskCategory = '';
         this.taskId = '';
-      },
-      changeDflt: function() {
-        this.dflt = !this.dflt;
       }
-      // sortStTolg: function() {
-      //   for (var i = 0; i < this.categories.length; i++) {
-      //     return this.categories[i].tasks.sort(function(task1, task2) {
-      //       if (task1.length_time > task2.length_time) {
-      //         return 1;
-      //       } else if (task2.length_time > task1.length_time) {
-      //         return -1;
-      //       } else {
-      //         return 0;
-      //       }
-      //     });
-      //   }
-      // }
     }
   });
 });
